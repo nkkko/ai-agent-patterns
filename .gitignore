@@ -169,3 +169,26 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Book build outputs
+_book/
+book/_build/
+site/
+
+# Common document formats
+*.pdf
+*.epub
+*.mobi
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
