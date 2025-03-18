@@ -1,0 +1,193 @@
+% AI Agent Design Patterns Book LaTeX Template - O'Reilly Style
+\documentclass[11pt,oneside]{scrbook}
+
+% Packages
+\usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{microtype}
+\usepackage{framed}
+\usepackage{fancyvrb}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{lipsum}
+\usepackage{enumitem}
+
+% O'Reilly-style colors
+\definecolor{covercolor}{HTML}{067BB0}
+\definecolor{codebackground}{RGB}{245,245,245}
+\definecolor{npmred}{RGB}{203,56,55}
+\definecolor{accent}{HTML}{58A6FF}
+
+% Define \tightlist for pandoc compatability
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Define Shaded environment and related commands for code blocks
+\definecolor{shadecolor}{RGB}{240,240,240}
+\newenvironment{Shaded}{\begin{tcolorbox}[
+  breakable,
+  enhanced,
+  colback=codebackground,
+  colframe=black!40,
+  arc=2mm,
+  boxrule=0.4pt
+]}{\end{tcolorbox}}
+
+% Define Highlighting environment for syntax highlighting
+\newenvironment{Highlighting}{}{}
+
+% Syntax highlighting tokens
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+
+% Highlight boxes
+\newtcolorbox{infobox}[1][]{
+  enhanced jigsaw,
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  title=Information,
+  fonttitle=\bfseries,
+  breakable,
+  #1
+}
+
+\newtcolorbox{warningbox}[1][]{
+  enhanced jigsaw,
+  colback=yellow!5!white,
+  colframe=yellow!75!black,
+  title=Warning,
+  fonttitle=\bfseries,
+  breakable,
+  #1
+}
+
+\newtcolorbox{tipbox}[1][]{
+  enhanced jigsaw,
+  colback=green!5!white,
+  colframe=green!75!black,
+  title=Tip,
+  fonttitle=\bfseries,
+  breakable,
+  #1
+}
+
+% Set up fonts
+\setmainfont{$mainfont$}
+\setsansfont{$sansfont$}
+\setmonofont{$monofont$}
+
+% Hyperref settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={$title$},
+    pdfauthor={$for(author)$$author$$sep$, $endfor$},
+    pdfkeywords={AI, Agents, Design Patterns},
+    pdfcreator={XeLaTeX},
+    bookmarks=true,
+    bookmarksnumbered=true
+}
+
+% Page layout
+\geometry{$geometry$}
+
+% Header and footer style - O'Reilly like
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{} % Clear these positions
+\fancyfoot[C]{\thepage} % Center footer for page number
+\fancyfoot[LE,RO]{\small\textsf{$title$}} % Book title in footer
+\renewcommand{\headrulewidth}{0pt} % No header rule
+\renewcommand{\footrulewidth}{0.4pt} % Footer rule
+
+% Chapter and section styling
+\KOMAoption{chapterprefix}{true}
+\addtokomafont{chapter}{\Large\bfseries\color{covercolor}}
+\addtokomafont{section}{\normalfont\large\bfseries\color{covercolor}}
+\addtokomafont{subsection}{\normalfont\normalsize\bfseries\color{covercolor}}
+
+% Custom commands for inline code and other elements
+\newcommand{\code}[1]{\texttt{\textcolor{npmred}{#1}}}
+
+\begin{document}
+
+% Title page with O'Reilly style
+\begin{titlepage}
+    \tikzset{external/export=false}
+    \begin{tikzpicture}[remember picture, overlay]
+        % Top bar
+        \fill[covercolor] (current page.north west) rectangle ([yshift=-2cm]current page.north east);
+        \node[anchor=north west, text=white, font=\Large\itshape] at ([xshift=1cm, yshift=-1cm]current page.north west) {A Guide to Building Effective AI Systems};
+
+        % Cover image placeholder - replace with your own image
+        \node[anchor=north] at ([yshift=-5cm]current page.north) {
+            \includegraphics[width=5cm]{images/generated/book_cover.png}
+        };
+
+        % Title block
+        \fill[covercolor] ([yshift=-8cm]current page.north west) rectangle ([yshift=-12cm]current page.north east);
+        \node[anchor=north, text=white, font=\Huge\bfseries, align=center] at ([yshift=-10cm]current page.north) {$title$};
+
+        % Authors
+        \node[anchor=north, font=\Large\bfseries, align=center] at ([yshift=-14cm]current page.north) {
+            $for(author)$$author$$sep$ \\ $endfor$
+        };
+
+        % Rights
+        \node[anchor=south, font=\small, align=center] at ([yshift=2cm]current page.south) {
+            $rights$
+        };
+    \end{tikzpicture}
+\end{titlepage}
+
+% Table of contents
+$if(toc)$
+\tableofcontents
+\clearpage
+$endif$
+
+% Main content
+$body$
+
+\end{document}

@@ -1,0 +1,22 @@
+---
+description: Guidelines for creating Python scripts that generate images for the books
+globs: chapters/*/generate_*.py
+alwaysApply: false
+---
+{
+  "name": "Image Generation for Book",
+  "description": "Guidelines for creating Python scripts that generate images for the AI Agent Design Patterns book",
+  "pattern": {
+    "intent": ["create image script", "generate book image", "create diagram script", "make book image"]
+  },
+  "action": {
+    "type": "replace",
+    "with": "I'll help you create a Python script to generate an image for your book. The script will follow these guidelines:\n\n1. All image generation scripts will be stored in the `images/` directory\n2. Each script will be named descriptively (e.g., `agent_loop_diagram.py`, `tool_integration_flow.py`)\n3. Generated images will be saved to the `images/generated/` directory\n4. Images will use a consistent style with the following characteristics:\n   - Clean, minimalist design with sufficient whitespace\n   - Color palette compatible with both light and dark backgrounds\n   - Readable font sizes for book reproduction\n   - Appropriate dimensions for book layout (landscape for diagrams, 16:9 aspect ratio)\n\n5. All scripts will use matplotlib, Pillow, or other Python libraries that allow precise control\n6. Each script will include clear comments describing the purpose and structure of the image\n\nI'll use this structure for the script:\n\n```python\n#!/usr/bin/env python3\n\"\"\"\nGenerate [IMAGE DESCRIPTION] for AI Agent Design Patterns book.\n\nThis image illustrates [KEY CONCEPT] for Chapter [X]: [CHAPTER NAME].\n\"\"\"\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom pathlib import Path\n\n# Create output directory if it doesn't exist\noutput_dir = Path(\"images/generated\")\noutput_dir.mkdir(parents=True, exist_ok=True)\n\n# Set consistent style for book images\nplt.style.use('seaborn-whitegrid')\nfig, ax = plt.subplots(figsize=(10, 6))  # Book-friendly dimensions\n\n# [IMAGE GENERATION CODE HERE]\n\n# Add title and labels\nax.set_title('[IMAGE TITLE]', fontsize=14)\n\n# Save the image\noutput_path = output_dir / '[FILENAME].png'\nplt.savefig(output_path, dpi=300, bbox_inches='tight')\nprint(f\"Image saved to {output_path}\")\n```\n\nWhat type of image would you like me to help you create?"
+  },
+  "examples": [
+    {
+      "input": "Create an image script for the agent loop diagram",
+      "output": "I'll help you create a Python script to generate an agent loop diagram for your book. I'll set up the script in the images directory with the appropriate structure and style guidelines."
+    }
+  ]
+}

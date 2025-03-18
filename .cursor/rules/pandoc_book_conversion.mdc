@@ -1,0 +1,128 @@
+---
+description: Guidelines for converting Markdown files to book formats (PDF, EPUB, MOBI) using Pandoc for the AI Agent Design Patterns book.
+globs: 
+alwaysApply: false
+---
+# Pandoc Book Conversion
+
+## Description
+Guidelines for converting Markdown files to book formats (PDF, EPUB, MOBI) using Pandoc for the AI Agent Design Patterns book.
+
+## Setup Requirements
+- Pandoc (install latest version)
+- A LaTeX distribution (TeX Live recommended)
+- Pandoc filters: pandoc-crossref (for cross-references)
+- Custom template files (stored in the `templates/` directory)
+
+## Basic Commands
+
+### Generate PDF
+```bash
+pandoc --toc \
+  --template=templates/book.tex \
+  --pdf-engine=xelatex \
+  --filter pandoc-crossref \
+  -o book.pdf \
+  metadata.yaml \
+  chapters/*.md
+```
+
+### Generate EPUB
+```bash
+pandoc --toc \
+  --epub-cover-image=images/cover.png \
+  --filter pandoc-crossref \
+  -o book.epub \
+  metadata.yaml \
+  chapters/*.md
+```
+
+### Generate Single HTML
+```bash
+pandoc --toc \
+  --template=templates/book.html \
+  --filter pandoc-crossref \
+  --self-contained \
+  -o book.html \
+  metadata.yaml \
+  chapters/*.md
+```
+
+## Metadata File Structure
+The `metadata.yaml` file should contain:
+
+```yaml
+---
+title: "AI Agent Design Patterns"
+author:
+  - Nikola Balić
+  - Ivan Burazin
+date: "2025"
+rights: "Copyright © 2025"
+language: "en-US"
+cover-image: "images/cover.png"
+css: "templates/styles.css"
+toc-title: "Table of Contents"
+geometry: "margin=1in"
+fontsize: 11pt
+mainfont: "DejaVu Serif"
+sansfont: "DejaVu Sans"
+monofont: "DejaVu Sans Mono"
+---
+```
+
+## File Organization
+- `chapters/`: All Markdown chapter files
+- `templates/`: Custom Pandoc templates
+- `images/`: All images referenced in the book
+- `metadata.yaml`: Book metadata
+- `Makefile`: Build automation (recommended)
+
+## Recommended Makefile
+```makefile
+.PHONY: pdf epub html all clean
+
+all: pdf epub html
+
+pdf:
+	pandoc --toc \
+	  --template=templates/book.tex \
+	  --pdf-engine=xelatex \
+	  --filter pandoc-crossref \
+	  -o book.pdf \
+	  metadata.yaml \
+	  chapters/*.md
+
+epub:
+	pandoc --toc \
+	  --epub-cover-image=images/cover.png \
+	  --filter pandoc-crossref \
+	  -o book.epub \
+	  metadata.yaml \
+	  chapters/*.md
+
+html:
+	pandoc --toc \
+	  --template=templates/book.html \
+	  --filter pandoc-crossref \
+	  --self-contained \
+	  -o book.html \
+	  metadata.yaml \
+	  chapters/*.md
+
+clean:
+	rm -f book.pdf book.epub book.html
+```
+
+## Best Practices
+1. **Chapter Order**: Always specify chapter files in the correct order
+2. **Cross-References**: Use the `pandoc-crossref` syntax for consistent internal links
+3. **Images**: Store all images in the `images/` directory and use relative paths
+4. **Citations**: For academic references, use a BibTeX file and add `--bibliography=references.bib` to commands
+5. **Custom Styling**: Customize appearance through templates rather than inline formatting
+6. **Validation**: Validate each output format before final distribution
+
+## Troubleshooting
+- If PDF generation fails, check LaTeX installation and template compatibility
+- For missing images in EPUB, ensure paths are correct and files exist
+- If cross-references fail, verify pandoc-crossref is properly installed and syntax is correct

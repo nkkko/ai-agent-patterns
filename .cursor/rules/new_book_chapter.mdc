@@ -1,0 +1,104 @@
+---
+description: Creates a new book chapter with consistent structure for the AI Agent Design Patterns book
+globs: chapters/*.md
+alwaysApply: false
+---
+{
+  "name": "New Book Chapter",
+  "description": "Creates a new book chapter with consistent structure for the AI Agent Design Patterns book",
+  "pattern": {
+    "intent": ["create new chapter", "write new chapter", "start new chapter", "add chapter"]
+  },
+  "action": {
+    "type": "code",
+    "code": "// Extract chapter information from the query
+const chapterTitleMatch = input.match(/chapter(?:\\s+on)?\\s+([\\w\\s]+)/i);
+const chapterNumberMatch = input.match(/chapter\\s+(\\d+)/i);
+
+if (!chapterTitleMatch) {
+  return \"I'll help you create a new chapter for your AI Agent Design Patterns book. Please specify a title for the chapter.\";
+}
+
+// Extract chapter title and create a safe filename
+const chapterTitle = chapterTitleMatch[1].trim();
+const safeFilename = chapterTitle.toLowerCase().replace(/\\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+
+// Determine chapter number
+let chapterNumber = '';
+if (chapterNumberMatch) {
+  chapterNumber = chapterNumberMatch[1];
+} else {
+  // Try to infer the chapter number from existing chapters
+  const fs = require('fs');
+  try {
+    const files = fs.readdirSync('chapters');
+    const chapterFiles = files.filter(file => file.match(/^\\d+_.*\\.md$/));
+    if (chapterFiles.length > 0) {
+      const lastChapterNum = Math.max(...chapterFiles.map(file => {
+        const match = file.match(/^(\\d+)_/);
+        return match ? parseInt(match[1], 10) : 0;
+      }));
+      chapterNumber = (lastChapterNum + 1).toString();
+    } else {
+      chapterNumber = '1';
+    }
+  } catch (e) {
+    chapterNumber = '1'; // Default to chapter 1 if no chapters directory
+  }
+}
+
+// Pad chapter number for consistent sorting
+const paddedChapterNumber = chapterNumber.padStart(2, '0');
+const filename = `chapters/${paddedChapterNumber}_${safeFilename}.md`;
+
+// Create chapter template
+const template = `# Chapter ${chapterNumber}: ${chapterTitle}
+
+## Introduction
+
+*Brief introduction to the chapter concepts*
+
+## Key Concepts
+
+### Key Concept 1
+*Explanation of the first key concept*
+
+#### Pattern: Example Pattern
+*Pattern description*
+
+**Structure and Implementation:**
+- Point 1
+- Point 2
+
+**When to use:**
+- Use case 1
+- Use case 2
+
+**Code example:**
+\`\`\`python
+# Example code
+\`\`\`
+
+### Key Concept 2
+*Explanation of the second key concept*
+
+## Practical Applications
+*Real-world examples and applications*
+
+## Summary
+*Chapter summary and key takeaways*
+
+## References
+- Reference 1
+- Reference 2
+`;
+
+return `I'll create Chapter ${chapterNumber}: ${chapterTitle} in the chapters folder.\n\nThe file will be saved as: ${filename}\n\nI'll use the standard chapter structure with introduction, key concepts, patterns, applications, and summary sections.`;"
+  },
+  "examples": [
+    {
+      "input": "Create a new chapter on tool integration patterns",
+      "output": "I'll create Chapter 3: Tool Integration Patterns in the chapters folder.\n\nThe file will be saved as: chapters/03_tool_integration_patterns.md\n\nI'll use the standard chapter structure with introduction, key concepts, patterns, applications, and summary sections."
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+---
+description: Creates and updates the SPECS.md index file that links to all specification documents
+globs: "SPECS.md"
+alwaysApply: false
+---
+{
+  "name": "Specifications Index",
+  "description": "Creates and updates the SPECS.md index file that links to all specification documents in the specs/ folder",
+  "pattern": {
+    "intent": ["create specs index", "update specs index", "generate specs table", "specs overview"]
+  },
+  "action": {
+    "type": "code",
+    "code": "const fs = require('fs');
+const path = require('path');
+
+// Function to get all spec files
+function getSpecFiles() {
+  try {
+    const files = fs.readdirSync('specs').filter(file => file.endsWith('_spec.md'));
+    return files.map(file => {
+      const content = fs.readFileSync(path.join('specs', file), 'utf8');
+      const titleMatch = content.match(/^#\\s+(.+)$/m);
+      const title = titleMatch ? titleMatch[1] : file.replace('_spec.md', '').replace(/_/g, ' ');
+      
+      // Try to extract a description
+      const descMatch = content.match(/^##\\s+Summary\\s*\\n\\s*(.+?)\\s*$/m) || 
+                        content.match(/^\\*(.+?)\\*\\s*$/m);
+      const description = descMatch ? descMatch[1] : 'No description available';
+      
+      return {
+        filename: file,
+        title: title,
+        description: description
+      };
+    });
+  } catch (e) {
+    return [];
+  }
+}
+
+// Generate the SPECS.md content
+function generateSpecsIndex() {
+  const specs = getSpecFiles();
+  
+  let content = `# Book Chapter Specifications\n\n`;
+  content += `This document provides an overview of all chapter specifications for the AI Agent Design Patterns book.\n\n`;
+  
+  if (specs.length === 0) {
+    content += `*No specification documents found. Create specifications in the specs/ folder.*\n`;
+  } else {
+    content += `## Specifications Overview\n\n`;
+    content += `| Chapter/Topic | Description | Specification |\n`;
+    content += `|---------------|-------------|---------------|\n`;
+    
+    specs.forEach(spec => {
+      const title = spec.title.charAt(0).toUpperCase() + spec.title.slice(1);
+      content += `| ${title} | ${spec.description} | [View Spec](specs/${spec.filename}) |\n`;
+    });
+    
+    content += `\n## How to Use These Specifications\n\n`;
+    content += `Each specification document contains detailed requirements, implementation notes, and references for a specific chapter or topic. `;
+    content += `Use these documents when writing or reviewing chapters to ensure consistency and completeness.\n\n`;
+    content += `To add a new specification, create a markdown file in the specs/ folder with the naming pattern *topic_spec.md*.\n`;
+  }
+  
+  return content;
+}
+
+return 'I\\'ll create or update the SPECS.md index file that provides links to all specification documents in the specs/ folder.';"
+  },
+  "examples": [
+    {
+      "input": "Create the SPECS.md index file",
+      "output": "I'll create or update the SPECS.md index file that provides links to all specification documents in the specs/ folder. This will include a table with links to each specification document, along with a brief description of each topic."
+    }
+  ]
+}

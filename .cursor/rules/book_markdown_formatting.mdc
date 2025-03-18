@@ -1,0 +1,23 @@
+---
+description: Book Markdown Formatting
+globs: 
+alwaysApply: false
+---
+{
+  "name": "Book Markdown Formatting",
+  "description": "Ensures consistent markdown formatting for the AI Agent Design Patterns book",
+  "pattern": {
+    "intent": ["format markdown", "fix markdown", "improve markdown", "proper markdown formatting"],
+    "filetype": ["md", "markdown"]
+  },
+  "action": {
+    "type": "code",
+    "code": "// Format the markdown according to book standards\nconst content = document.getText();\n\n// Ensure headers use proper format (## for chapter titles, ### for sections)\nlet formatted = content.replace(/^#\\s+([A-Z][\\w\\s:]+)$/gm, '## $1');\nformatted = formatted.replace(/^##\\s+([A-Z][\\w\\s:]+)$/gm, '### $1');\n\n// Ensure consistent list formatting\nformatted = formatted.replace(/^\\*\\s+/gm, '- ');\n\n// Add proper spacing around code blocks\nformatted = formatted.replace(/```([a-z]*)\\n/g, '```$1\\n');\nformatted = formatted.replace(/\\n```/g, '\\n```\\n');\n\n// Ensure proper spacing between sections\nformatted = formatted.replace(/\\n\\n\\n+/g, '\\n\\n');\nformatted = formatted.replace(/^##\\s+/gm, '\\n## ');\nformatted = formatted.replace(/^###\\s+/gm, '\\n### ');\n\nreturn formatted;"
+  },
+  "examples": [
+    {
+      "input": "Format the markdown in this book chapter file",
+      "output": "I've formatted the markdown in the book chapter according to the project's standards."
+    }
+  ]
+}

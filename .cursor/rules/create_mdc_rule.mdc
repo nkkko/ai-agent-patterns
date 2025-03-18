@@ -1,0 +1,22 @@
+---
+description: Creates a new MDC rule file with the correct .mdc extension in the .cursor/rules folder
+globs: 
+alwaysApply: false
+---
+{
+  "name": "Create MDC Rule",
+  "description": "Creates a new MDC rule file with the correct .mdc extension in the .cursor/rules folder",
+  "pattern": {
+    "intent": ["create mdc rule", "new mdc rule", "add mdc rule", "make mdc rule", "define mdc rule"]
+  },
+  "action": {
+    "type": "code",
+    "code": "const ruleName = input.match(/for\\s+([\\w\\s]+)/i)?.[1]?.trim() || 'new rule';\nconst safeRuleName = ruleName.toLowerCase().replace(/\\s+/g, '_');\nconst filePath = `.cursor/rules/${safeRuleName}.mdc`;\n\nreturn `I'll create a new MDC rule for \"${ruleName}\" in the .cursor/rules folder.\n\nI'll create the file at: ${filePath}\n\nLet me prepare the content for this rule...`;"
+  },
+  "examples": [
+    {
+      "input": "Create an MDC rule for JavaScript formatting",
+      "output": "I'll create a new MDC rule for \"JavaScript formatting\" in the .cursor/rules folder.\n\nI'll create the file at: .cursor/rules/javascript_formatting.mdc\n\nLet me prepare the content for this rule..."
+    }
+  ]
+}

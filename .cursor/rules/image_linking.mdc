@@ -1,0 +1,22 @@
+---
+description: Guidelines for linking and using generated images in the book
+globs: chapters/*/chapter.md
+alwaysApply: false
+---
+{
+  "name": "Image Linking for Book",
+  "description": "Guidelines for linking and using generated images in the AI Agent Design Patterns book",
+  "pattern": {
+    "intent": ["add image to book", "insert diagram", "include image", "link diagram", "reference image"]
+  },
+  "action": {
+    "type": "replace",
+    "with": "I'll help you add an image reference to your book content. When referencing images in your markdown files, follow these guidelines:\n\n1. All images should be referenced using relative paths from the book root directory\n2. Use the following markdown syntax for images:\n\n```markdown\n![Figure X: Descriptive caption](images/generated/image_filename.png)\n```\n\n3. For diagrams that need special consideration:\n\n```markdown\n<figure>\n  <img src=\"images/generated/diagram_filename.png\" alt=\"Descriptive alt text\" width=\"80%\">\n  <figcaption>Figure X: Detailed caption explaining the key elements of the diagram</figcaption>\n</figure>\n```\n\n4. Always provide descriptive captions that explain what the reader should take away from the image\n5. Number figures sequentially within each chapter (e.g., Figure 2.1, Figure 2.2 for Chapter 2)\n6. For images that need side-by-side comparison, use HTML with flexbox:\n\n```markdown\n<div style=\"display: flex; justify-content: space-between;\">\n  <figure style=\"width: 48%;\">\n    <img src=\"images/generated/image1.png\" alt=\"Description of first image\">\n    <figcaption>Figure X.a: Caption for first image</figcaption>\n  </figure>\n  <figure style=\"width: 48%;\">\n    <img src=\"images/generated/image2.png\" alt=\"Description of second image\">\n    <figcaption>Figure X.b: Caption for second image</figcaption>\n  </figure>\n</div>\n```\n\nWhich image would you like to reference in your book?"
+  },
+  "examples": [
+    {
+      "input": "Add the agent loop diagram to the introduction chapter",
+      "output": "I'll help you add the agent loop diagram to your introduction chapter. Here's how you can reference it with proper formatting and caption:\n\n```markdown\n<figure>\n  <img src=\"images/generated/agent_loop_diagram.png\" alt=\"The basic agent loop showing observation, reasoning, and action phases\" width=\"80%\">\n  <figcaption>Figure 1.1: The agent loop illustrates the fundamental cycle of observation, reasoning, and action that drives all agent systems. Each phase feeds into the next, creating a continuous process of environmental interaction.</figcaption>\n</figure>\n```\n\nThis adds a properly captioned figure with appropriate sizing and a descriptive caption that explains what the reader should understand from the diagram."
+    }
+  ]
+}

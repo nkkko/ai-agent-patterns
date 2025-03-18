@@ -1,0 +1,22 @@
+---
+description: Provides a consistent template for chapter specification documents
+globs: specs/*_spec.md
+alwaysApply: false
+---
+{
+  "name": "Specification Template",
+  "description": "Provides a consistent template for chapter specification documents in the specs/ folder",
+  "pattern": {
+    "intent": ["spec template", "specification template", "chapter spec format"]
+  },
+  "action": {
+    "type": "replace",
+    "with": "I'll use a consistent template for creating chapter specification documents. Here's the format I'll follow:\n\n```markdown\n# [Topic Name]\n\n*Brief overview of the topic and its importance in the context of AI agent design patterns.*\n\n## Summary\n\nA concise 2-3 sentence description of what this topic covers and why it matters.\n\n## Key Concepts\n\n- **Concept 1**: Definition and explanation\n- **Concept 2**: Definition and explanation\n- **Concept 3**: Definition and explanation\n\n## Patterns to Include\n\n1. **Pattern Name**\n   - Purpose: What problem does this pattern solve?\n   - Structure: Key components and their relationships\n   - Implementation considerations\n   - Use cases and examples\n\n2. **Pattern Name**\n   - Purpose: What problem does this pattern solve?\n   - Structure: Key components and their relationships\n   - Implementation considerations\n   - Use cases and examples\n\n## Code Examples\n\nDescribe the code examples that should be included:\n\n1. Example 1: Brief description\n2. Example 2: Brief description\n\n## Diagrams\n\nDescribe the diagrams that should be included:\n\n1. Diagram 1: What it illustrates and key components\n2. Diagram 2: What it illustrates and key components\n\n## References\n\n- Reference 1: Description and link\n- Reference 2: Description and link\n\n## Integration Points\n\nHow this topic relates to other chapters in the book:\n\n- Chapter X: Relationship description\n- Chapter Y: Relationship description\n```\n\nWould you like me to create a specification document using this template?"
+  },
+  "examples": [
+    {
+      "input": "Show me the chapter specification template",
+      "output": "I'll use a consistent template for creating chapter specification documents. Here's the format I'll follow:\n\n[Template format follows]"
+    }
+  ]
+}

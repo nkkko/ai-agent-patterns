@@ -1,0 +1,77 @@
+---
+description: Helps create consistent Mermaid diagrams for the AI Agent Design Patterns book
+globs: ["chapters/*.md", "images/mermaid/*.md"]
+alwaysApply: false
+---
+{
+  "name": "Mermaid Diagrams",
+  "description": "Provides a standardized approach to creating and incorporating Mermaid diagrams in the book",
+  "pattern": {
+    "intent": ["create mermaid diagram", "make flowchart", "create sequence diagram", "draw class diagram", "add mermaid"]
+  },
+  "action": {
+    "type": "code",
+    "code": "try {\n  // Extract diagram type from input\n  const diagramTypes = {\n    flowchart: ['flowchart', 'flow chart', 'flow diagram'],\n    sequence: ['sequence diagram', 'sequence chart', 'sequence flow'],\n    class: ['class diagram', 'class chart', 'class model'],\n    state: ['state diagram', 'state machine', 'statechart'],\n    entity: ['er diagram', 'entity relationship', 'data model'],\n    gantt: ['gantt chart', 'gantt diagram', 'timeline'],\n    pie: ['pie chart', 'pie diagram', 'pie graph'],\n    mindmap: ['mind map', 'concept map', 'mindmap']\n  };\n  \n  let selectedType = null;\n  let diagramTitle = '';\n  \n  // Match title if present\n  const titleMatch = input.match(/diagram(?:\\s+for|\\s+of)?\\s+([\\w\\s]+)/i);\n  if (titleMatch) {\n    diagramTitle = titleMatch[1].trim();\n  }\n  \n  // Determine diagram type from input\n  for (const [type, keywords] of Object.entries(diagramTypes)) {\n    if (keywords.some(keyword => input.toLowerCase().includes(keyword))) {\n      selectedType = type;\n      break;\n    }\n  }\n  \n  // Default to flowchart if no specific type is detected\n  if (!selectedType) {\n    selectedType = 'flowchart';\n  }\n  \n  // Standardized colors and styles for consistent diagrams\n  const styleGuide = {\n    colors: {\n      primary: '#4B0082',    // Indigo - primary processes\n      secondary: '#9370DB',  // Medium Purple - secondary processes\n      highlight: '#FF6347',  // Tomato - highlighted/important steps\n      success: '#2E8B57',    // Sea Green - successful outcomes\n      warning: '#DAA520',    // Goldenrod - warnings/decision points\n      info: '#4682B4',       // Steel Blue - informational\n      background: '#F8F8FF'  // Ghost White - background\n    },\n    fontFamily: 'Arial, sans-serif',\n    fontSize: {\n      title: '18px',\n      label: '14px',\n      note: '12px'\n    },\n    lineStyle: {\n      normal: 'stroke-width:2px',\n      bold: 'stroke-width:3px',\n      dashed: 'stroke-dasharray: 5 5'\n    }\n  };\n  \n  // Generate appropriate diagram template based on selected type\n  let diagramCode = '';\n  let explanation = '';\n  let filenameSuggestion = '';\n  \n  // Format title for filename\n  const filenameBase = diagramTitle\
+    ? diagramTitle.toLowerCase().replace(/[^a-z0-9]+/g, '_')\
+    : selectedType + '_diagram';\
+  filenameSuggestion = filenameBase + '.md';\
+  \n  // Title for the diagram\n  const displayTitle = diagramTitle || 'Example ' + selectedType.charAt(0).toUpperCase() + selectedType.slice(1);\
+  \n  \
+  switch (selectedType) {\
+    case 'flowchart':\
+      diagramCode = `\\`\\`\\`mermaid\nflowchart TD\n    %% Define styles\n    classDef primary fill:${styleGuide.colors.primary},color:white,font-weight:bold\n    classDef secondary fill:${styleGuide.colors.secondary},color:white\n    classDef highlight fill:${styleGuide.colors.highlight},color:white,font-weight:bold\n    classDef decision fill:${styleGuide.colors.warning},color:white\n    classDef end fill:${styleGuide.colors.success},color:white\n    \n    %% Nodes\n    A[Start] --> B[Initialize Agent]\n    B --> C{Parse User Input}\n    C -->|Command| D[Execute Tool]\n    C -->|Query| E[Generate Response]\n    D --> F[Process Result]\n    E --> F\n    F --> G{More Actions?}\n    G -->|Yes| C\n    G -->|No| H[Return Final Result]\n    H --> I[End]\n    \n    %% Apply styles\n    class A,I primary\n    class B,D,E,F secondary\n    class C,G decision\n    class H end\n\\`\\`\\``;\
+      explanation = `This flowchart illustrates the basic execution flow of an AI agent, including initialization, input processing, tool execution, and response generation.`;\
+      break;\
+      \
+    case 'sequence':\
+      diagramCode = `\\`\\`\\`mermaid\nsequenceDiagram\n    %% Define participants\n    participant U as User\n    participant A as Agent\n    participant T as Tools\n    participant M as Memory\n    \n    %% Sequence\n    U->>A: Request action\n    activate A\n    A->>M: Retrieve context\n    M-->>A: Return context\n    A->>A: Planning phase\n    A->>T: Execute tool\n    activate T\n    T-->>A: Return result\n    deactivate T\n    A->>M: Store new information\n    A->>U: Respond to user\n    deactivate A\n\\`\\`\\``;\
+      explanation = `This sequence diagram shows the interaction between a user, an agent, its tools, and memory components during a typical request-response cycle.`;\
+      break;\
+      \
+    case 'class':\
+      diagramCode = `\\`\\`\\`mermaid\nclassDiagram\n    %% Class definitions\n    class Agent {\n        -List~Tool~ tools\n        -Memory memory\n        -Planner planner\n        +initialize()\n        +processInput(input)\n        +generateResponse()\n        +executeTool(tool)\n    }\n    \n    class Tool {\n        <<interface>>\n        +execute(args)\n        +getDescription()\n    }\n    \n    class Memory {\n        +store(key, value)\n        +retrieve(key)\n        +search(query)\n    }\n    \n    class Planner {\n        +createPlan(goal)\n        +nextAction()\n    }\n    \n    %% Relationships\n    Agent \"1\" *-- \"many\" Tool : has\n    Agent \"1\" *-- \"1\" Memory : uses\n    Agent \"1\" *-- \"1\" Planner : uses\n\\`\\`\\``;\
+      explanation = `This class diagram represents the core components of an agent architecture, showing relationships between the Agent, Tools, Memory, and Planner classes.`;\
+      break;\
+      \
+    case 'state':\
+      diagramCode = `\\`\\`\\`mermaid\nstateDiagram-v2\n    %% States\n    [*] --> Idle\n    Idle --> Processing: User input received\n    \n    state Processing {\n        [*] --> Parsing\n        Parsing --> Planning\n        Planning --> Executing\n        Executing --> Responding\n        Responding --> [*]\n    }\n    \n    Processing --> Idle: Response delivered\n    Processing --> Error: Exception occurs\n    Error --> Idle: Recovery\n\\`\\`\\``;\
+      explanation = `This state diagram shows the different states an agent can be in during its operation cycle, from idle to processing, with potential error states.`;\
+      break;\
+      \
+    case 'entity':\
+      diagramCode = `\\`\\`\\`mermaid\nerDiagram\n    AGENT ||--o{ TOOL : uses\n    AGENT ||--|| MEMORY : has\n    AGENT ||--|| PLANNER : uses\n    TOOL ||--o{ TOOL_EXECUTION : creates\n    TOOL_EXECUTION }o--|| MEMORY : stored_in\n    USER ||--o{ CONVERSATION : participates\n    AGENT ||--o{ CONVERSATION : participates\n    CONVERSATION ||--o{ MESSAGE : contains\n\\`\\`\\``;\
+      explanation = `This entity relationship diagram illustrates the data model for an agent system, showing how agents, tools, memory, and user conversations are related.`;\
+      break;\
+      \
+    case 'gantt':\
+      diagramCode = `\\`\\`\\`mermaid\ngantt\n    title Agent Processing Timeline\n    dateFormat s\n    axisFormat %S\n    \n    section Input Processing\n    Parse Input      :a1, 0, 1s\n    Context Retrieval:a2, after a1, 2s\n    \n    section Planning\n    Generate Plan    :b1, after a2, 3s\n    Select Actions   :b2, after b1, 1s\n    \n    section Execution\n    Execute Tools    :c1, after b2, 4s\n    Process Results  :c2, after c1, 2s\n    \n    section Response\n    Generate Response:d1, after c2, 3s\n    Format Output    :d2, after d1, 1s\n\\`\\`\\``;\
+      explanation = `This Gantt chart illustrates the timeline of an agent's processing stages, from input parsing to response generation, showing durations and dependencies.`;\
+      break;\
+      \
+    case 'pie':\
+      diagramCode = `\\`\\`\\`mermaid\npie\n    title Distribution of Agent Processing Time\n    \"Input Analysis\" : 15\n    \"Planning\" : 25\n    \"Tool Execution\" : 40\n    \"Response Generation\" : 20\n\\`\\`\\``;\
+      explanation = `This pie chart shows the typical distribution of time spent in different phases of agent processing, highlighting which components consume the most resources.`;\
+      break;\
+      \
+    case 'mindmap':\
+      diagramCode = `\\`\\`\\`mermaid\nmindmap\n  root((Agent Design<br>Patterns))\n    Core Components\n      Memory\n        Short-term\n        Long-term\n      Planning\n        Goal-based\n        Reactive\n      Execution\n        Sequential\n        Parallel\n    Integration Patterns\n      API Connections\n      Data Sources\n      External Tools\n    Interaction Models\n      Command-based\n      Conversational\n      Event-driven\n\\`\\`\\``;\
+      explanation = `This mind map illustrates the key concepts and their relationships in agent design patterns, providing a hierarchical overview of the domain.`;\
+      break;\
+  }\
+  \n  // Instructions for saving and using the diagram\n  const saveInstructions = `\n## How to Save and Use This Diagram\n\n1. Save this diagram in the appropriate location:\n   - For chapter-specific diagrams: In the chapter markdown directly\n   - For reusable diagrams: In \\`images/mermaid/${filenameSuggestion}\\`\n\n2. To include this diagram in a chapter, use:\n\n\\`\\`\\`markdown\n![${displayTitle}](mdc:../images/mermaid/${filenameSuggestion})\n\\`\\`\\`\n\nor include the mermaid code directly in the markdown.\n\n## Style Guide Compliance\n\nThis diagram follows the book's visual style guide:\n- Primary color: ${styleGuide.colors.primary}\n- Secondary color: ${styleGuide.colors.secondary}\n- Highlight color: ${styleGuide.colors.highlight}\n- Success/end color: ${styleGuide.colors.success}\n- Warning/decision color: ${styleGuide.colors.warning}\n`;\
+  \n  return `# ${displayTitle} Diagram\n\n${explanation}\n\n${diagramCode}\n${saveInstructions}`;\
+} catch (error) {\
+  return `Error creating diagram: ${error.message}`;\
+}"
+  },
+  "examples": [
+    {
+      "input": "Create a flowchart for agent execution loop",
+      "output": "# Agent Execution Loop Diagram\n\nThis flowchart illustrates the basic execution flow of an AI agent, including initialization, input processing, tool execution, and response generation.\n\n```mermaid\nflowchart TD\n    %% Define styles\n    classDef primary fill:#4B0082,color:white,font-weight:bold\n    classDef secondary fill:#9370DB,color:white\n    classDef highlight fill:#FF6347,color:white,font-weight:bold\n    classDef decision fill:#DAA520,color:white\n    classDef end fill:#2E8B57,color:white\n    \n    %% Nodes\n    A[Start] --> B[Initialize Agent]\n    B --> C{Parse User Input}\n    C -->|Command| D[Execute Tool]\n    C -->|Query| E[Generate Response]\n    D --> F[Process Result]\n    E --> F\n    F --> G{More Actions?}\n    G -->|Yes| C\n    G -->|No| H[Return Final Result]\n    H --> I[End]\n    \n    %% Apply styles\n    class A,I primary\n    class B,D,E,F secondary\n    class C,G decision\n    class H end\n```\n\n## How to Save and Use This Diagram\n\n1. Save this diagram in the appropriate location:\n   - For chapter-specific diagrams: In the chapter markdown directly\n   - For reusable diagrams: In `images/mermaid/agent_execution_loop.md`\n\n2. To include this diagram in a chapter, use:\n\n```markdown\n![Agent Execution Loop](mdc:../images/mermaid/agent_execution_loop.md)\n```\n\nor include the mermaid code directly in the markdown.\n\n## Style Guide Compliance\n\nThis diagram follows the book's visual style guide:\n- Primary color: #4B0082\n- Secondary color: #9370DB\n- Highlight color: #FF6347\n- Success/end color: #2E8B57\n- Warning/decision color: #DAA520"
+    },
+    {
+      "input": "Create a sequence diagram for tool execution",
+      "output": "# Tool Execution Diagram\n\nThis sequence diagram shows the interaction between a user, an agent, its tools, and memory components during a typical request-response cycle.\n\n```mermaid\nsequenceDiagram\n    %% Define participants\n    participant U as User\n    participant A as Agent\n    participant T as Tools\n    participant M as Memory\n    \n    %% Sequence\n    U->>A: Request action\n    activate A\n    A->>M: Retrieve context\n    M-->>A: Return context\n    A->>A: Planning phase\n    A->>T: Execute tool\n    activate T\n    T-->>A: Return result\n    deactivate T\n    A->>M: Store new information\n    A->>U: Respond to user\n    deactivate A\n```\n\n## How to Save and Use This Diagram\n\n1. Save this diagram in the appropriate location:\n   - For chapter-specific diagrams: In the chapter markdown directly\n   - For reusable diagrams: In `images/mermaid/tool_execution.md`\n\n2. To include this diagram in a chapter, use:\n\n```markdown\n![Tool Execution](mdc:../images/mermaid/tool_execution.md)\n```\n\nor include the mermaid code directly in the markdown.\n\n## Style Guide Compliance\n\nThis diagram follows the book's visual style guide:\n- Primary color: #4B0082\n- Secondary color: #9370DB\n- Highlight color: #FF6347\n- Success/end color: #2E8B57\n- Warning/decision color: #DAA520"
+    }
+  ]
+}
