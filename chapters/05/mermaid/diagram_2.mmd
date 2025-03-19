@@ -1,0 +1,32 @@
+classDiagram
+    class OrchestratorAgent {
+        -specialized_agents[]
+        +process_request(user_request)
+        -decompose_task(request)
+        -assign_subtasks(decomposed_tasks)
+        -aggregate_results(agent_responses)
+        -generate_final_output(aggregated_results)
+    }
+
+    class ResearchAgent {
+        +find_information(topic, requirements)
+    }
+
+    class WritingAgent {
+        +draft_content(research, outline)
+    }
+
+    class EditingAgent {
+        +polish_content(draft)
+    }
+
+    class FactCheckAgent {
+        +verify_claims(content)
+    }
+
+    OrchestratorAgent --> ResearchAgent : delegates to
+    OrchestratorAgent --> WritingAgent : delegates to
+    OrchestratorAgent --> EditingAgent : delegates to
+    OrchestratorAgent --> FactCheckAgent : delegates to
+
+    note for OrchestratorAgent "Coordinates the content\ncreation workflow and\nensures quality output"

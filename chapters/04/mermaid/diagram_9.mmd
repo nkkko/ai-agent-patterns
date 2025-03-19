@@ -1,0 +1,30 @@
+classDiagram
+    class EnhancedLongTermMemory {
+        +store(text, metadata)
+        +retrieve_hybrid(query, filters, limit)
+    }
+
+    class ProductivityAssistantMemory {
+        -user_id
+        -ltm
+        -user_preferences{}
+        -recurring_tasks[]
+        -important_dates[]
+        +store_interaction(conversation)
+        +get_relevant_context(current_query)
+        -_extract_tasks(conversation)
+        -_extract_preferences(conversation)
+        -_extract_important_dates(conversation)
+        -_is_relevant(key, query)
+        -_is_upcoming(date)
+    }
+
+    ProductivityAssistantMemory --> EnhancedLongTermMemory : uses
+
+    note for ProductivityAssistantMemory "Specializes memory for productivity contexts,\ntracking user preferences, tasks, and dates\nwhile storing conversations for retrieval"
+
+    classDef component fill:#9370DB,color:white
+    classDef specialized fill:#4B0082,color:white
+
+    class EnhancedLongTermMemory component
+    class ProductivityAssistantMemory specialized

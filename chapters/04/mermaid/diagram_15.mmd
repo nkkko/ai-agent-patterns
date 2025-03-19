@@ -1,0 +1,35 @@
+classDiagram
+    class MemoryAwareAgent {
+        -llm
+        -conversation_memory
+        -working_memory
+        -long_term_memory
+        +process_input(user_input)
+        -_create_context(current_input, ltm_results, working_state)
+        -_update_working_memory(user_input, response)
+        -_update_long_term_memory(user_input, response)
+    }
+
+    class ConversationMemory {
+        +add_message(role, content)
+    }
+
+    class WorkingMemory {
+        +get_current_state()
+    }
+
+    class LongTermMemory {
+        +retrieve(query)
+    }
+
+    MemoryAwareAgent --> ConversationMemory : uses
+    MemoryAwareAgent --> WorkingMemory : uses
+    MemoryAwareAgent --> LongTermMemory : uses
+
+    note for MemoryAwareAgent "Integrates all memory types to\nprovide comprehensive context\nfor agent responses"
+
+    classDef agent fill:#4B0082,color:white
+    classDef memory fill:#9370DB,color:white
+
+    class MemoryAwareAgent agent
+    class ConversationMemory,WorkingMemory,LongTermMemory memory

@@ -1,4 +1,4 @@
-**Title:** AI Agent Design Patterns: Designing Intelligent Systems for Autonomous Action
+**Title:** Agentic AI Design Patterns: Designing Intelligent Systems for Autonomous Action
 
 **Target Audience:** Software Engineers
 

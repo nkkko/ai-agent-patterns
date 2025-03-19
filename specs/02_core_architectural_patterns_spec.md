@@ -1,7 +1,7 @@
 # Chapter 2: Core Architectural Patterns - Specification
 
 ## Overview
-This specification outlines the content, structure, and key concepts for Chapter 2 of "AI Agent Design Patterns", focusing on foundational architectural patterns for agent systems.
+This specification outlines the content, structure, and key concepts for Chapter 2 of "Agentic AI Design Patterns", focusing on foundational architectural patterns for agent systems.
 
 ## Metadata
 - **Chapter Number:** 2

@@ -1,0 +1,30 @@
+classDiagram
+    class CodeAssistanceMemory {
+        -max_tokens
+        -code_snippets[]
+        -requirements[]
+        -error_messages[]
+        -file_structure{}
+        +add_code_snippet(snippet, file_path, relevance)
+        +get_optimized_context(current_file, current_error)
+        -_count_tokens(text)
+        -_create_code_summary(code)
+        -_format_context(elements)
+    }
+
+    class CodeSnippet {
+        +code
+        +file
+        +relevance
+        +timestamp
+    }
+
+    CodeAssistanceMemory o-- "*" CodeSnippet : manages
+
+    note for CodeAssistanceMemory "Optimizes context for code assistance by\nprioritizing relevant code snippets,\nerror messages, and requirements"
+
+    classDef main fill:#4B0082,color:white
+    classDef component fill:#9370DB,color:white
+
+    class CodeAssistanceMemory main
+    class CodeSnippet component

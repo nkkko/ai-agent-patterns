@@ -1,7 +1,7 @@
 # Chapter 3: Tool Integration Patterns - Specification
 
 ## Overview
-This specification outlines the content, structure, and key concepts for Chapter 3 of "AI Agent Design Patterns", focusing on patterns for integrating external tools and services with agent systems.
+This specification outlines the content, structure, and key concepts for Chapter 3 of "Agentic AI Design Patterns", focusing on patterns for integrating external tools and services with agent systems.
 
 ## Metadata
 - **Chapter Number:** 3

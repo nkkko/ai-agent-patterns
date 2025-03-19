@@ -1,11 +1,11 @@
 ---
-description: Creates a new book chapter with consistent structure for the AI Agent Design Patterns book
-globs: chapters/*.md
+description: Creates a new book chapter with consistent structure for the Agentic AI Design Patterns book
+globs: ["chapters/*.md"]
 alwaysApply: false
 ---
 {
   "name": "New Book Chapter",
-  "description": "Creates a new book chapter with consistent structure for the AI Agent Design Patterns book",
+  "description": "Creates a new book chapter with consistent structure for the Agentic AI Design Patterns book",
   "pattern": {
     "intent": ["create new chapter", "write new chapter", "start new chapter", "add chapter"]
   },
@@ -16,7 +16,7 @@ const chapterTitleMatch = input.match(/chapter(?:\\s+on)?\\s+([\\w\\s]+)/i);
 const chapterNumberMatch = input.match(/chapter\\s+(\\d+)/i);
 
 if (!chapterTitleMatch) {
-  return \"I'll help you create a new chapter for your AI Agent Design Patterns book. Please specify a title for the chapter.\";
+  return \"I'll help you create a new chapter for your Agentic AI Design Patterns book. Please specify a title for the chapter.\";
 }
 
 // Extract chapter title and create a safe filename
@@ -66,18 +66,25 @@ const template = `# Chapter ${chapterNumber}: ${chapterTitle}
 #### Pattern: Example Pattern
 *Pattern description*
 
-**Structure and Implementation:**
-- Point 1
-- Point 2
+**Structure:**
+- Component 1: Responsibility and purpose
+- Component 2: Responsibility and purpose
+- Relationship: How components interact
+
+**Narrative Example:**
+*A real-world example explaining how the pattern works in practice without using code*
+
+**Diagram:**
+\`\`\`mermaid
+flowchart TD
+    A[Component 1] --> B[Component 2]
+    B --> C[Component 3]
+    C --> D[Result]
+\`\`\`
 
 **When to use:**
 - Use case 1
 - Use case 2
-
-**Code example:**
-\`\`\`python
-# Example code
-\`\`\`
 
 ### Key Concept 2
 *Explanation of the second key concept*

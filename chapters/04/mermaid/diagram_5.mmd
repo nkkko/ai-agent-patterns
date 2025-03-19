@@ -1,0 +1,27 @@
+classDiagram
+    class WorkingMemory {
+        -current_goal
+        -subgoals[]
+        -completion_status{}
+        -intermediate_results{}
+    }
+
+    class ResearchWorkingMemory {
+        -search_queries[]
+        -key_findings[]
+        -sources[]
+        -contradictions[]
+        -questions_to_explore[]
+        +add_finding(finding, source)
+        +get_research_state()
+    }
+
+    WorkingMemory <|-- ResearchWorkingMemory : extends
+
+    note for ResearchWorkingMemory "Specialized working memory\nfor research tasks, tracking\nfindings, sources, and contradictions"
+
+    classDef baseClass fill:#9370DB,color:white
+    classDef specializedClass fill:#4B0082,color:white
+
+    class WorkingMemory baseClass
+    class ResearchWorkingMemory specializedClass

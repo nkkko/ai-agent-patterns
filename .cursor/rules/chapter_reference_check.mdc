@@ -1,0 +1,25 @@
+---
+description: Checks that there's a corresponding reference folder for each chapter when creating or updating chapters
+globs: chapters/*.md
+alwaysApply: false
+---
+{
+  "name": "Chapter Reference Check",
+  "description": "Checks that there's a corresponding reference folder for each chapter when creating or updating chapters",
+  "pattern": {
+    "globPatterns": ["chapters/*.md"]
+  },
+  "action": {
+    "type": "validateAndSuggest",
+    "validateAndSuggest": {
+      "validator": "const content = input;\nconst filename = filepath.split('/').pop();\n\n// Extract chapter number from filename (e.g., 01_chapter_name.md -> 01)\nconst chapterNumber = filename.match(/^(\\d+)_/)?.[1];\n\nif (!chapterNumber) {\n  return {\n    valid: false,\n    message: `Unable to determine chapter number from filename: ${filename}. Chapter files should follow the pattern: XX_chapter_name.md`\n  };\n}\n\n// Check if corresponding reference folder exists\nconst fs = require('fs');\nconst referenceFolderPath = `references/${chapterNumber}`;\n\nif (!fs.existsSync(referenceFolderPath)) {\n  return {\n    valid: false,\n    message: `Reference folder for chapter ${chapterNumber} doesn't exist. Please create the folder: ${referenceFolderPath}`\n  };\n}\n\nreturn {\n  valid: true,\n  message: `Reference folder for chapter ${chapterNumber} exists at ${referenceFolderPath}`\n};",
+      "suggestion": "// If validation fails, suggest creating the missing reference folder\nif (!result.valid && result.message.includes(\"doesn't exist\")) {\n  const chapterNumber = filepath.split('/').pop().match(/^(\\d+)_/)?.[1];\n  return `It looks like you're working on chapter ${chapterNumber}, but the reference folder doesn't exist.\\n\\nWould you like to create it? You can run this command:\\n\\n\`\`\`\\nmkdir -p references/${chapterNumber}\\n\`\`\`\\n\\nThis will ensure there's a dedicated place to store references for this chapter.`;\n}"
+    }
+  },
+  "examples": [
+    {
+      "input": "# Working on chapter 09\nThis is a new chapter file that doesn't have a reference folder yet.",
+      "output": "It looks like you're working on chapter 09, but the reference folder doesn't exist.\n\nWould you like to create it? You can run this command:\n\n```\nmkdir -p references/09\n```\n\nThis will ensure there's a dedicated place to store references for this chapter."
+    }
+  ]
+}

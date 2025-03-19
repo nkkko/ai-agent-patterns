@@ -1,17 +1,15 @@
 ---
-title: "AI Agent Design Patterns"
+title: "Agentic AI Design Patterns"
 author:
   - Nikola Balić
-  - Ivan Burazin
 date: "2025"
 rights: "Copyright © 2025"
 language: "en-US"
-cover-image: "images/generated/book_cover.png"
 css: "templates/styles.css"
 toc-title: "Table of Contents"
 geometry: "margin=1in"
 fontsize: 11pt
-mainfont: "Liberation Serif"
-sansfont: "Liberation Sans"
-monofont: "Fira Code"
+mainfont: "Times New Roman"
+sansfont: "Arial"
+monofont: "Courier New"
 ---

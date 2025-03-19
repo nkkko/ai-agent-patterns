@@ -1,0 +1,18 @@
+classDiagram
+    class WorkingMemory {
+        -current_goal
+        -subgoals[]
+        -completion_status{}
+        -intermediate_results{}
+        -attention_focus
+        +set_goal(goal)
+        +add_subgoal(subgoal)
+        +complete_subgoal(subgoal)
+        +store_result(key, value)
+        +set_attention(focus)
+    }
+
+    note for WorkingMemory "Maintains state for the\ncurrent task and tracks\nprogress toward goals"
+
+    classDef workingMemory fill:#4B0082,color:white
+    class WorkingMemory workingMemory

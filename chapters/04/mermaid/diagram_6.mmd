@@ -1,0 +1,28 @@
+classDiagram
+    class LongTermMemory {
+        -vector_db
+        -embedding_model
+        +store(text, metadata)
+        +retrieve(query, limit)
+    }
+
+    class VectorDB {
+        +add(embedding, text, metadata)
+        +search(embedding, limit)
+    }
+
+    class EmbeddingModel {
+        +embed(text)
+    }
+
+    LongTermMemory --> VectorDB : uses
+    LongTermMemory --> EmbeddingModel : uses
+
+    note for LongTermMemory "Persists information across\nsessions using semantic search\nfor retrieval"
+    note for VectorDB "Stores vector embeddings\nand enables similarity search"
+
+    classDef primary fill:#4B0082,color:white
+    classDef component fill:#9370DB,color:white
+
+    class LongTermMemory primary
+    class VectorDB,EmbeddingModel component

@@ -1,10 +1,10 @@
-# AI Agent Design Patterns
+# Agentic AI Design Patterns
 
 A practical guide for software engineers designing intelligent systems for autonomous action.
 
 ## About This Book
 
-AI Agent Design Patterns is a comprehensive guide for software engineers who are building agent systems. This book provides:
+Agentic AI Design Patterns is a comprehensive guide for software engineers who are building agent systems. This book provides:
 
 - **Practical Patterns**: Battle-tested architectural approaches for building robust agent systems
 - **Implementation Guidance**: Concrete code examples showing how to implement each pattern
@@ -26,10 +26,10 @@ The book chapters are organized in the `chapters/` directory:
 
 1. [Building Blocks of Software Agents](chapters/01_building_blocks_of_software_agents.md)
 2. [Core Architectural Patterns](chapters/02_core_architectural_patterns.md)
-3. Tool Integration Patterns (Coming soon)
-4. Memory and State Patterns (Coming soon)
-5. Multi-Agent Patterns (Coming soon)
-6. Case Study: Building a Retrieval-Enhanced Development Assistant (Coming soon)
+3. [Tool Integration Patterns](chapters/03_tool_integration_patterns.md)
+4. [Memory and State Patterns](chapters/04_memory_and_state_patterns.md)
+5. [Multi-Agent Patterns](chapters/05_multi_agent_patterns.md)
+6. [Case Study: Building a Retrieval-Enhanced Development Assistant](chapters/06_case_study_retrieval_enhanced_development_assistant.md)
 
 ## Development Environment Setup
 

@@ -1,0 +1,29 @@
+classDiagram
+    class WorkingMemory {
+        -current_goal
+        -subgoals[]
+        -completion_status{}
+        -intermediate_results{}
+        -attention_focus
+        +set_goal(goal)
+        +add_subgoal(subgoal)
+        +complete_subgoal(subgoal)
+        +store_result(key, value)
+        +set_attention(focus)
+    }
+
+    class AttentionAwareWorkingMemory {
+        -relevance_scores{}
+        +update_relevance(query)
+        +get_focused_context(max_items)
+    }
+
+    WorkingMemory <|-- AttentionAwareWorkingMemory : extends
+
+    note for AttentionAwareWorkingMemory "Prioritizes information based on\nrelevance to the current query\nor focus of attention"
+
+    classDef baseClass fill:#9370DB,color:white
+    classDef attentionClass fill:#4B0082,color:white
+
+    class WorkingMemory baseClass
+    class AttentionAwareWorkingMemory attentionClass

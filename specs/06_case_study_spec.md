@@ -1,7 +1,7 @@
 # Chapter 6: Case Study: Building a Retrieval-Enhanced Development Assistant - Specification
 
 ## Overview
-This specification outlines the content, structure, and key concepts for Chapter 6 of "AI Agent Design Patterns", providing a capstone case study that brings together patterns from previous chapters.
+This specification outlines the content, structure, and key concepts for Chapter 6 of "Agentic AI Design Patterns", providing a capstone case study that brings together patterns from previous chapters.
 
 ## Metadata
 - **Chapter Number:** 6

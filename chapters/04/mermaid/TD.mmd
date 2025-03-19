@@ -1,0 +1,25 @@
+graph TD
+    Raw[Raw Messages] --> KeyPoints[Key Points Extraction]
+    KeyPoints --> PrioritySorting[Priority Sorting]
+    PrioritySorting --> HighPriority[High Priority Content]
+    PrioritySorting --> MediumPriority[Medium Priority Content]
+    PrioritySorting --> LowPriority[Low Priority Content]
+
+    HighPriority --> FullRetention[Full Content]
+    MediumPriority --> Summarization[Summarized Content]
+    LowPriority --> KeywordExtraction[Keyword Extraction]
+
+    FullRetention --> FinalContext[Context Window]
+    Summarization --> FinalContext
+    KeywordExtraction --> FinalContext
+
+    subgraph "Memory Optimization Process"
+        KeyPoints
+        PrioritySorting
+        HighPriority
+        MediumPriority
+        LowPriority
+        FullRetention
+        Summarization
+        KeywordExtraction
+    end

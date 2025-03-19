@@ -1,0 +1,35 @@
+classDiagram
+    class DocumentProcessor {
+        +process_document(document)
+    }
+
+    class OCRService {
+        +extract_text(image)
+    }
+
+    class ClassificationService {
+        +categorize_document(text)
+    }
+
+    class DataExtractionService {
+        +extract_fields(text, document_type)
+    }
+
+    class CommunicationProtocol {
+        +format_request(service, action, data)
+        +parse_response(service_response)
+        +handle_error(error, service)
+    }
+
+    DocumentProcessor --> CommunicationProtocol : uses
+    DocumentProcessor --> OCRService : communicates with
+    DocumentProcessor --> ClassificationService : communicates with
+    DocumentProcessor --> DataExtractionService : communicates with
+
+    note for CommunicationProtocol "Standardizes all inter-service\ncommunication with consistent\nformats and error handling"
+
+    classDef serviceClass fill:#9370DB,color:white
+    classDef protocolClass fill:#4B0082,color:white
+
+    class DocumentProcessor,OCRService,ClassificationService,DataExtractionService serviceClass
+    class CommunicationProtocol protocolClass

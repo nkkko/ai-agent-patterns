@@ -1,0 +1,15 @@
+sequenceDiagram
+    participant User
+    participant Agent
+    participant ToolController
+    participant GitHubClient
+    participant Octokit
+
+    User->>Agent: "Add error handling to fetchUserData function"
+    Agent->>ToolController: Select appropriate tool
+    ToolController->>GitHubClient: Request repository search
+    GitHubClient->>Octokit: API call (search code)
+    Octokit->>GitHubClient: Return search results
+    GitHubClient->>ToolController: Return relevant code files
+    ToolController->>Agent: Process search results
+    Agent->>User: Generate response with code suggestions

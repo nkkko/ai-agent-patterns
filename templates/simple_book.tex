@@ -1,0 +1,142 @@
+% Simple Book LaTeX Template for Pandoc
+\documentclass[11pt,oneside]{book}
+
+% Basic packages
+% \usepackage{fontspec} % Comment out for pdflatex compatibility
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{fancyvrb}
+\usepackage{framed}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+
+% Define potentially missing Pandoc commands
+\providecommand{\pandocbounded}[1]{\textbf{#1}}
+
+% Page geometry
+\geometry{
+  letterpaper,
+  margin=1in
+}
+
+% Define tightlist for pandoc compatibility
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Simple code style
+\definecolor{codebackground}{RGB}{248,248,248}
+\definecolor{codeframe}{RGB}{230,230,230}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\definecolor{teal}{RGB}{0,128,128}
+\definecolor{purple}{RGB}{128,0,128}
+\definecolor{gray}{RGB}{128,128,128}
+\definecolor{blue}{RGB}{0,0,255}
+
+\lstdefinestyle{codestyle}{
+  backgroundcolor=\color{codebackground},
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  frameround=tttt,
+  rulecolor=\color{codeframe}
+}
+\lstset{style=codestyle}
+
+% Define Shaded environment for code blocks
+\newenvironment{Shaded}
+  {\begin{snugshade}}
+  {\end{snugshade}}
+
+% Define the Highlighting environment for syntax highlighting
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  fontsize=\small,
+  commandchars=\\\{\}
+}
+
+% Define basic Highlighting colors
+\newcommand{\AlertTok}[1]{\textcolor{red}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor{gray}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor{blue}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor{purple}{#1}}
+\newcommand{\BuiltInTok}[1]{\textbf{#1}}
+\newcommand{\CharTok}[1]{\textcolor{purple}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor{gray}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor{gray}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor{red}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textbf{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor{blue}{#1}}
+\newcommand{\DecValTok}[1]{#1}
+\newcommand{\DocumentationTok}[1]{\textcolor{gray}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor{purple}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor{teal}{#1}}
+\newcommand{\ImportTok}[1]{\textbf{#1}}
+\newcommand{\InformationTok}[1]{\textcolor{gray}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor{blue}{#1}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{#1}
+\newcommand{\OtherTok}[1]{\textcolor{purple}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor{teal}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor{purple}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor{purple}{#1}}
+\newcommand{\StringTok}[1]{\textcolor{purple}{#1}}
+\newcommand{\VariableTok}[1]{\textit{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor{purple}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor{red}{\textbf{\textit{#1}}}}
+
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[RO,LE]{\thepage}
+\fancyfoot[C]{$title$}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Title formatting
+\titleformat{\chapter}{\Huge\bfseries}{\thechapter.}{1em}{}
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+
+% Hyperref setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={$title$},
+    pdfauthor={$for(author)$$author$$sep$, $endfor$}
+}
+
+\begin{document}
+
+% Title page
+\begin{titlepage}
+\centering
+\vspace*{2cm}
+{\Huge\bfseries $title$\par}
+\vspace{1.5cm}
+{\Large $for(author)$$author$$sep$ \\ $endfor$\par}
+\vspace{1cm}
+{\large $date$\par}
+\vfill
+\end{titlepage}
+
+% Table of contents
+$if(toc)$
+\tableofcontents
+\clearpage
+$endif$
+
+% Main content
+$body$
+
+\end{document}

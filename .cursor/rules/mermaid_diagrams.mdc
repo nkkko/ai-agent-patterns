@@ -1,5 +1,5 @@
 ---
-description: Helps create consistent Mermaid diagrams for the AI Agent Design Patterns book
+description: Helps create consistent Mermaid diagrams for the Agentic AI Design Patterns book
 globs: ["chapters/*.md", "images/mermaid/*.md"]
 alwaysApply: false
 ---

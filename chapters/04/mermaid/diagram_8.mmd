@@ -1,0 +1,25 @@
+classDiagram
+    class LongTermMemory {
+        -vector_db
+        -embedding_model
+        +store(text, metadata)
+        +retrieve(query, limit)
+    }
+
+    class EnhancedLongTermMemory {
+        -keyword_index
+        +retrieve_hybrid(query, filters, limit)
+        +retrieve_by_category(query, category, limit)
+        -_merge_and_rerank(semantic_results, keyword_results, query)
+        -_matches_filters(result, filters)
+    }
+
+    LongTermMemory <|-- EnhancedLongTermMemory : extends
+
+    note for EnhancedLongTermMemory "Combines semantic search\nwith keyword indexing and\nmetadata filtering for improved retrieval"
+
+    classDef baseMemory fill:#9370DB,color:white
+    classDef enhancedMemory fill:#4B0082,color:white
+
+    class LongTermMemory baseMemory
+    class EnhancedLongTermMemory enhancedMemory

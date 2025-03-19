@@ -1,4 +1,4 @@
-# AI Agent Design Patterns - Chapter Specifications
+# Agentic AI Design Patterns - Chapter Specifications
 
 This document provides links to detailed specifications for each chapter of the book.
 

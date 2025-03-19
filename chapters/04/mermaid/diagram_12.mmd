@@ -1,0 +1,24 @@
+classDiagram
+    class ChunkedMemory {
+        -chunks[]
+        -summaries{}
+        +add_chunk(content, chunk_id)
+        +get_hierarchical_view()
+        +expand_chunk(chunk_id)
+        -_generate_summary(content)
+    }
+
+    class MemoryChunk {
+        +id
+        +content
+    }
+
+    ChunkedMemory o-- "*" MemoryChunk : contains
+
+    note for ChunkedMemory "Organizes information into chunks\nwith summaries for efficient\nhierarchical access"
+
+    classDef main fill:#4B0082,color:white
+    classDef component fill:#9370DB,color:white
+
+    class ChunkedMemory main
+    class MemoryChunk component

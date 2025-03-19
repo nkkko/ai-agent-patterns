@@ -1,0 +1,39 @@
+classDiagram
+    class SpecialistAgent {
+        -domain_knowledge
+        -expertise_boundaries
+        -capability_description
+        +process_task(task)
+        +provide_capability_description()
+        +check_task_suitability(task)
+    }
+
+    class DomainExpertAgent {
+        -domain_specific_knowledge
+        -specialized_reasoning
+        +analyze_domain_problem(problem)
+    }
+
+    class ToolExpertAgent {
+        -tool_api_knowledge
+        -tool_execution_logic
+        +execute_tool_task(task)
+    }
+
+    class MethodExpertAgent {
+        -specialized_methods
+        -analysis_techniques
+        +apply_specialized_method(data)
+    }
+
+    SpecialistAgent <|-- DomainExpertAgent : extends
+    SpecialistAgent <|-- ToolExpertAgent : extends
+    SpecialistAgent <|-- MethodExpertAgent : extends
+
+    note for SpecialistAgent "Abstract base class for\nall specialist agents"
+
+    classDef base fill:#4B0082,color:white
+    classDef specialist fill:#9370DB,color:white
+
+    class SpecialistAgent base
+    class DomainExpertAgent,ToolExpertAgent,MethodExpertAgent specialist

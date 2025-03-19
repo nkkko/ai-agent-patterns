@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant User
+    participant Orchestrator
+    participant AgentA as Specialized Agent A
+    participant AgentB as Specialized Agent B
+    participant AgentC as Specialized Agent C
+
+    User->>Orchestrator: Submit complex request
+    Orchestrator->>Orchestrator: Analyze and decompose task
+    Orchestrator->>AgentA: Assign subtask A
+    Orchestrator->>AgentB: Assign subtask B
+    Orchestrator->>AgentC: Assign subtask C
+
+    AgentA->>Orchestrator: Return subtask A results
+    AgentB->>Orchestrator: Return subtask B results
+    AgentC->>Orchestrator: Return subtask C results
+
+    Orchestrator->>Orchestrator: Integrate results
+    Orchestrator->>User: Deliver unified response

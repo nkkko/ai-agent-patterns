@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language name="python" version="1.0" kateversion="5.0" section="Scripts" extensions="*.py;*.pyw" mimetype="text/x-python" priority="0" author="Claude" license="MIT">
+  <highlighting>
+    <list name="import">
+      <item>import</item>
+      <item>from</item>
+      <item>as</item>
+    </list>
+    <list name="defs">
+      <item>class</item>
+      <item>def</item>
+      <item>lambda</item>
+    </list>
+    <list name="operators">
+      <item>and</item>
+      <item>or</item>
+      <item>not</item>
+      <item>is</item>
+      <item>in</item>
+    </list>
+    <list name="flow">
+      <item>if</item>
+      <item>elif</item>
+      <item>else</item>
+      <item>for</item>
+      <item>while</item>
+      <item>break</item>
+      <item>continue</item>
+      <item>return</item>
+      <item>yield</item>
+      <item>pass</item>
+      <item>raise</item>
+      <item>with</item>
+      <item>try</item>
+      <item>except</item>
+      <item>finally</item>
+      <item>assert</item>
+    </list>
+    <list name="builtinfuncs">
+      <item>abs</item>
+      <item>all</item>
+      <item>any</item>
+      <item>bin</item>
+      <item>bool</item>
+      <item>bytearray</item>
+      <item>callable</item>
+      <item>chr</item>
+      <item>classmethod</item>
+      <item>compile</item>
+      <item>complex</item>
+      <item>dict</item>
+      <item>dir</item>
+      <item>divmod</item>
+      <item>enumerate</item>
+      <item>eval</item>
+      <item>exec</item>
+      <item>filter</item>
+      <item>float</item>
+      <item>format</item>
+      <item>frozenset</item>
+      <item>getattr</item>
+      <item>globals</item>
+      <item>hasattr</item>
+      <item>hash</item>
+      <item>help</item>
+      <item>hex</item>
+      <item>id</item>
+      <item>input</item>
+      <item>int</item>
+      <item>isinstance</item>
+      <item>issubclass</item>
+      <item>iter</item>
+      <item>len</item>
+      <item>list</item>
+      <item>locals</item>
+      <item>map</item>
+      <item>max</item>
+      <item>memoryview</item>
+      <item>min</item>
+      <item>next</item>
+      <item>object</item>
+      <item>open</item>
+      <item>ord</item>
+      <item>pow</item>
+      <item>print</item>
+      <item>property</item>
+      <item>range</item>
+      <item>repr</item>
+      <item>reversed</item>
+      <item>round</item>
+      <item>set</item>
+      <item>setattr</item>
+      <item>slice</item>
+      <item>sorted</item>
+      <item>staticmethod</item>
+      <item>str</item>
+      <item>sum</item>
+      <item>super</item>
+      <item>tuple</item>
+      <item>type</item>
+      <item>vars</item>
+      <item>zip</item>
+      <item>__import__</item>
+    </list>
+    <list name="special">
+      <item>None</item>
+      <item>self</item>
+      <item>True</item>
+      <item>False</item>
+    </list>
+    <contexts>
+      <context name="Normal" attribute="Normal Text" lineEndContext="#stay">
+        <DetectSpaces />
+        <RegExpr attribute="Comment" context="Comment" String="#.*$" />
+        <RegExpr attribute="Decorator" context="#stay" String="@[_\w]+" />
+        <StringDetect attribute="String" context="String3" String="&quot;&quot;&quot;" beginRegion="String" />
+        <StringDetect attribute="String" context="String3" String="'''" beginRegion="String" />
+        <DetectChar attribute="String" context="String1" char="&quot;" />
+        <DetectChar attribute="String" context="String2" char="'" />
+
+        <keyword attribute="Import" context="#stay" String="import"/>
+        <keyword attribute="Keyword" context="#stay" String="defs"/>
+        <keyword attribute="Operator Word" context="#stay" String="operators"/>
+        <keyword attribute="Control Flow" context="#stay" String="flow"/>
+        <keyword attribute="Builtin Function" context="#stay" String="builtinfuncs"/>
+        <keyword attribute="Special Variable" context="#stay" String="special"/>
+
+        <Float attribute="Float" context="#stay" />
+        <HlCHex attribute="Hex" context="#stay" />
+        <Int attribute="Int" context="#stay" />
+
+        <RegExpr attribute="Function" context="#stay" String="\b[_a-zA-Z][_a-zA-Z0-9]*(?=\s*\()" />
+        <RegExpr attribute="Normal Text" context="#stay" String="[a-zA-Z_][a-zA-Z0-9_]*" />
+
+        <DetectChar attribute="Symbol" context="#stay" char="{" beginRegion="Brace1" />
+        <DetectChar attribute="Symbol" context="#stay" char="}" endRegion="Brace1" />
+        <DetectChar attribute="Symbol" context="#stay" char="[" beginRegion="Bracket1" />
+        <DetectChar attribute="Symbol" context="#stay" char="]" endRegion="Bracket1" />
+        <DetectChar attribute="Symbol" context="#stay" char="(" beginRegion="Parenthesis1" />
+        <DetectChar attribute="Symbol" context="#stay" char=")" endRegion="Parenthesis1" />
+      </context>
+
+      <context name="String1" attribute="String" lineEndContext="#pop">
+        <HlCStringChar attribute="String Char" context="#stay" />
+        <DetectChar attribute="String" context="#pop" char="&quot;" />
+      </context>
+
+      <context name="String2" attribute="String" lineEndContext="#pop">
+        <HlCStringChar attribute="String Char" context="#stay" />
+        <DetectChar attribute="String" context="#pop" char="'" />
+      </context>
+
+      <context name="String3" attribute="Documentation" lineEndContext="#stay">
+        <HlCStringChar attribute="String Char" context="#stay" />
+        <StringDetect attribute="Documentation" context="#pop" String="&quot;&quot;&quot;" endRegion="String" />
+        <StringDetect attribute="Documentation" context="#pop" String="'''" endRegion="String" />
+      </context>
+
+      <context name="Comment" attribute="Comment" lineEndContext="#pop">
+        <DetectSpaces />
+        <IncludeRules context="##Comments" />
+      </context>
+    </contexts>
+
+    <itemDatas>
+      <itemData name="Normal Text" defStyleNum="dsNormal" />
+      <itemData name="Keyword" defStyleNum="dsKeyword" />
+      <itemData name="Import" defStyleNum="dsImport" />
+      <itemData name="Decorator" defStyleNum="dsOthers" />
+      <itemData name="Function" defStyleNum="dsFunction" />
+      <itemData name="Builtin Function" defStyleNum="dsBuiltIn" />
+      <itemData name="Special Variable" defStyleNum="dsVariable" />
+      <itemData name="Control Flow" defStyleNum="dsControlFlow" />
+      <itemData name="Operator Word" defStyleNum="dsOperator" />
+      <itemData name="String" defStyleNum="dsString" />
+      <itemData name="Documentation" defStyleNum="dsDocumentation" />
+      <itemData name="String Char" defStyleNum="dsChar" />
+      <itemData name="Comment" defStyleNum="dsComment" />
+      <itemData name="Symbol" defStyleNum="dsNormal" />
+      <itemData name="Int" defStyleNum="dsDecVal" />
+      <itemData name="Float" defStyleNum="dsFloat" />
+      <itemData name="Hex" defStyleNum="dsBaseN" />
+    </itemDatas>
+  </highlighting>
+  <general>
+    <comments>
+      <comment name="singleLine" start="#" />
+    </comments>
+    <keywords casesensitive="1" />
+  </general>
+</language>

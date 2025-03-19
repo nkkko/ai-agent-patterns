@@ -1,4 +1,15 @@
-# Chapter 2: Core Architectural Patterns
+---
+title: "Core Architectural Patterns"
+description: "Foundational architectural patterns for AI agent systems"
+authors: ["Nikola Balić"]
+date: 2025-03-18
+last_updated: 2025-03-18
+status: draft
+chapter: 3
+tags: ["ai", "agents", "patterns", "architecture", "design"]
+---
+
+# Chapter 3: Core Architectural Patterns
 
 ## Introduction
 
@@ -24,43 +35,8 @@ The foundational architecture of your agent system determines its capabilities, 
 - For agents with minimal external dependencies
 - When deployment simplicity is critical
 
-**Code example:**
-```python
-class MonolithicAgent:
-    def __init__(self):
-        self.memory = {}
-        self.tools = self._register_tools()
-
-    def _register_tools(self):
-        return {
-            "search": self._search_tool,
-            "calculate": self._calculate_tool
-        }
-
-    def _search_tool(self, query):
-        # Implementation of search functionality
-        return f"Results for: {query}"
-
-    def _calculate_tool(self, expression):
-        # Implementation of calculation functionality
-        return eval(expression)
-
-    def process(self, user_input):
-        # Process user input
-        # Determine intent
-        # Select and execute appropriate tool
-        tool_name = self._determine_tool(user_input)
-        if tool_name in self.tools:
-            result = self.tools[tool_name](user_input)
-            return result
-        return "I don't know how to handle that request."
-
-    def _determine_tool(self, user_input):
-        # Simple intent detection logic
-        if "calculate" in user_input.lower():
-            return "calculate"
-        return "search"
-```
+**Diagram:**
+[MonolithicAgent Class Diagram - Shows the structure of a simple agent with internal memory and tool handling]
 
 ### Protocol-Based Architecture
 *Separating components using well-defined protocols for communication enables flexibility and component interchangeability.*
@@ -80,51 +56,69 @@ class MonolithicAgent:
 - For multi-team development environments
 - When integration with third-party tools is required
 
-**Code example:**
-```python
-# Protocol definition
-class ToolProtocol:
-    def describe(self):
-        """Return tool metadata"""
-        raise NotImplementedError()
+**Diagram:**
+[Protocol-Based Agent Architecture - Illustrates the relationship between the Agent, ToolProtocol interface, and concrete tool implementations like SearchTool and CalculatorTool]
 
-    def execute(self, parameters):
-        """Execute the tool with given parameters"""
-        raise NotImplementedError()
+## The Agent Loop Pattern
 
-# Tool implementation
-class SearchTool(ToolProtocol):
-    def describe(self):
-        return {
-            "name": "search",
-            "description": "Search for information",
-            "parameters": {
-                "query": "The search query string"
-            }
-        }
+The Agent Loop is the fundamental pattern underlying all AI agent architectures. It establishes the cyclical process of observation, reasoning, and action that enables agents to interact with their environment.
 
-    def execute(self, parameters):
-        query = parameters.get("query", "")
-        # Implementation of search functionality
-        return f"Results for: {query}"
+### Pattern Structure
 
-# Agent implementation
-class ProtocolAgent:
-    def __init__(self):
-        self.tools = {}
-        self.memory = {}
+In its simplest form, the Agent Loop consists of three main phases:
 
-    def register_tool(self, tool):
-        metadata = tool.describe()
-        self.tools[metadata["name"]] = tool
+1. **Observation**: The agent receives input from its environment (user queries, system data, etc.)
+2. **Reasoning**: The agent processes the input to determine appropriate actions
+3. **Action**: The agent executes the selected actions and observes the results
 
-    def process(self, user_input):
-        intent = self._determine_intent(user_input)
-        if intent in self.tools:
-            params = self._extract_parameters(user_input, intent)
-            return self.tools[intent].execute(params)
-        return "I don't know how to handle that request."
-```
+**Narrative Example:**
+Consider a virtual assistant helping a user book a flight. The agent loop would operate as follows:
+
+- In the observation phase, the agent receives the user's query "Book me a flight from New York to London next Friday."
+- During reasoning, the agent interprets the intent (flight booking), identifies key parameters (origin: New York, destination: London, date: next Friday), and determines it needs to check flight availability using a travel API.
+- In the action phase, the agent calls the travel API, processes the results, and responds to the user with available options.
+- The loop continues when the user selects a flight option, triggering a new observation phase.
+
+**Diagram:**
+[Agent Loop Flowchart - Illustrates the cyclical process of observation, reasoning, action, and evaluation that forms the core of agent behavior]
+
+### Key Variations
+
+#### 1. Reactive Agent Loop
+
+**Structure:**
+- Simplified reasoning phase using predefined rules or patterns
+- Quick response to environmental inputs
+- Limited or no memory of past interactions
+
+**Narrative Example:**
+A smart thermostat agent operates with a reactive loop pattern. It continuously observes the current temperature, compares it against the target temperature using simple rules, and then takes appropriate action (turn heating on/off). The agent doesn't need complex reasoning or extensive memory of past states to function effectively.
+
+**Diagram:**
+[Reactive Agent Loop - Shows a simple thermostat control loop with temperature observation and heating activation/deactivation based on a target threshold]
+
+#### 2. Deliberative Agent Loop
+
+**Structure:**
+- Enhanced reasoning phase including planning and knowledge integration
+- Incorporation of memory and context from past interactions
+- Goal-directed behavior rather than simple reactivity
+
+**Narrative Example:**
+A personal assistant agent helping with project management uses a deliberative loop. When asked to "schedule a team meeting," it considers multiple factors: team members' calendar availability, previous meeting patterns, project deadlines, and meeting room availability. It develops a plan with multiple steps (checking calendars, finding optimal times, sending invitations) rather than just reacting to the immediate request.
+
+**Diagram:**
+[Deliberative Agent Loop - Shows the sequence flow through Environment, Observation Module, Reasoning Engine, Planner, and Action Executor components]
+
+### Best Practices
+
+When implementing the Agent Loop pattern:
+
+1. **Define clear boundaries** between observation, reasoning, and action phases
+2. **Implement appropriate error handling** at each phase of the loop
+3. **Consider loop frequency** - how often the agent should cycle through the loop
+4. **Balance reactivity and deliberation** based on use case requirements
+5. **Monitor loop performance** to identify bottlenecks or failure points
 
 ## Practical Applications
 

@@ -1,7 +1,7 @@
 # Chapter 4: Memory and State Patterns - Specification
 
 ## Overview
-This specification outlines the content, structure, and key concepts for Chapter 4 of "AI Agent Design Patterns", focusing on patterns for implementing effective memory systems in agent architectures.
+This specification outlines the content, structure, and key concepts for Chapter 4 of "Agentic AI Design Patterns", focusing on patterns for implementing effective memory systems in agent architectures.
 
 ## Metadata
 - **Chapter Number:** 4

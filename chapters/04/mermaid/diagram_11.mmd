@@ -1,0 +1,14 @@
+classDiagram
+    class SelectiveMemory {
+        -max_items
+        -items[]
+        -importance_scores{}
+        +add_item(item, initial_importance)
+        -_update_importance_scores()
+        -_prune_items()
+    }
+
+    note for SelectiveMemory "Prioritizes information\nbased on importance scores\nand removes least important\nitems when space is limited"
+
+    classDef selective fill:#4B0082,color:white
+    class SelectiveMemory selective

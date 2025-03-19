@@ -1,4 +1,4 @@
-# AI Agent Design Patterns
+# Agentic AI Design Patterns
 ## Designing Intelligent Systems for Autonomous Action
 
 *Final Outline for 30-page Edition*

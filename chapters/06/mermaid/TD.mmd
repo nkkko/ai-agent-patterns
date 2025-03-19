@@ -1,0 +1,27 @@
+graph TD
+    Request[Tool Request] --> TryExecution[Try Tool Execution]
+    TryExecution --> Success{Success?}
+
+    Success -->|Yes| ProcessResult[Process Result]
+    Success -->|No| DetermineErrorType[Determine Error Type]
+
+    DetermineErrorType --> Transient{Transient?}
+    DetermineErrorType --> Permanent{Permanent?}
+
+    Transient -->|Yes| RetryStrategy[Apply Retry Strategy]
+    Transient -->|No| Permanent
+
+    Permanent -->|Yes| FallbackStrategy[Use Fallback Approach]
+    Permanent -->|No| ErrorReport[Report Error to User]
+
+    RetryStrategy --> RetryLimit{Retry Limit?}
+    RetryLimit -->|Not Reached| TryExecution
+    RetryLimit -->|Limit Reached| FallbackStrategy
+
+    FallbackStrategy --> AlternativeSource[Use Alternative Source]
+    FallbackStrategy --> GeneralKnowledge[Use General Knowledge]
+
+    AlternativeSource --> ProcessResult
+    GeneralKnowledge --> ProcessResult
+
+    ProcessResult --> Response[Generate Response]

@@ -1,7 +1,7 @@
 # Chapter 1: Building Blocks of Software Agents - Specification
 
 ## Overview
-This specification outlines the content, structure, and key concepts for Chapter 1 of "AI Agent Design Patterns".
+This specification outlines the content, structure, and key concepts for Chapter 1 of "Agentic AI Design Patterns".
 
 ## Metadata
 - **Chapter Number:** 1

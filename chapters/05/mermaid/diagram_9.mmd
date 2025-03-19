@@ -1,0 +1,44 @@
+classDiagram
+    class MessageProtocol {
+        +message_type
+        +sender_id
+        +recipient_id
+        +content
+        +metadata
+        +timestamp
+        +validate()
+        +serialize()
+        +deserialize()
+    }
+
+    class TaskAssignmentMessage {
+        +task_description
+        +deadline
+        +priority
+        +required_capabilities
+    }
+
+    class ResultReportMessage {
+        +task_id
+        +result_data
+        +confidence_score
+        +processing_metadata
+    }
+
+    class QueryMessage {
+        +query_content
+        +response_format
+        +context_information
+    }
+
+    MessageProtocol <|-- TaskAssignmentMessage : extends
+    MessageProtocol <|-- ResultReportMessage : extends
+    MessageProtocol <|-- QueryMessage : extends
+
+    note for MessageProtocol "Base protocol for all\nagent communications"
+
+    classDef baseProtocol fill:#4B0082,color:white
+    classDef messageType fill:#9370DB,color:white
+
+    class MessageProtocol baseProtocol
+    class TaskAssignmentMessage,ResultReportMessage,QueryMessage messageType

@@ -1,0 +1,16 @@
+classDiagram
+    class CompressedMemory {
+        -max_tokens
+        -compressed_history[]
+        +add_exchange(user_input, agent_response)
+        -_compress_exchange(user_input, agent_response)
+        -_enforce_token_limit()
+        -_extract_key_points(text)
+        -_count_tokens(content)
+        -_apply_progressive_summarization()
+    }
+
+    note for CompressedMemory "Reduces token usage through\ncompression techniques like\nkey point extraction and\nprogressive summarization"
+
+    classDef compression fill:#4B0082,color:white
+    class CompressedMemory compression

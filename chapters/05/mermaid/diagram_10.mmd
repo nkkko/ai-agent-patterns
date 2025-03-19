@@ -1,0 +1,16 @@
+sequenceDiagram
+    participant A as Agent A
+    participant B as Agent B
+    participant C as Agent C
+    participant D as Agent D
+
+    A->>B: Propose solution X
+    B->>A: Counter with evidence Y
+    A->>C: Ask for evaluation of Y
+    C->>A: Confirm validity of Y
+    A->>D: Seek alternative perspective
+    D->>A: Provide alternative Z
+    A->>B: Revise to solution X'
+    B->>C: Evaluate solution X'
+    C->>B: Approve with modification
+    B->>A: Present consensus solution

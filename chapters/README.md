@@ -1,6 +1,6 @@
-# AI Agent Design Patterns - Chapters
+# Agentic AI Design Patterns - Chapters
 
-This directory contains all the chapters for the AI Agent Design Patterns book.
+This directory contains all the chapters for the Agentic AI Design Patterns book.
 
 ## Table of Contents
 

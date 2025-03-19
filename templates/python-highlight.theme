@@ -1,0 +1,112 @@
+{
+  "text-color": "#000000",
+  "background-color": "#f8f8f8",
+  "line-number-color": "#aaaaaa",
+  "line-number-background-color": "#f8f8f8",
+  "text-styles": {
+    "Normal": {
+      "text-color": "#000000"
+    },
+    "Keyword": {
+      "text-color": "#208050",
+      "bold": true
+    },
+    "Function": {
+      "text-color": "#4080D6"
+    },
+    "Variable": {
+      "text-color": "#4080D6"
+    },
+    "ControlFlow": {
+      "text-color": "#208050",
+      "bold": true
+    },
+    "Operator": {
+      "text-color": "#000000"
+    },
+    "BuiltIn": {
+      "text-color": "#4080D6",
+      "bold": true
+    },
+    "Extension": {
+      "text-color": "#4080D6"
+    },
+    "Preprocessor": {
+      "text-color": "#4080D6"
+    },
+    "Attribute": {
+      "text-color": "#4080D6"
+    },
+    "Char": {
+      "text-color": "#aa22ff"
+    },
+    "SpecialChar": {
+      "text-color": "#aa22ff"
+    },
+    "String": {
+      "text-color": "#aa22ff"
+    },
+    "VerbatimString": {
+      "text-color": "#aa22ff"
+    },
+    "SpecialString": {
+      "text-color": "#4C998E"
+    },
+    "Import": {
+      "text-color": "#208050",
+      "bold": true
+    },
+    "DataType": {
+      "text-color": "#4080D6"
+    },
+    "DecVal": {
+      "text-color": "#aa22ff"
+    },
+    "BaseN": {
+      "text-color": "#aa22ff"
+    },
+    "Float": {
+      "text-color": "#aa22ff"
+    },
+    "Constant": {
+      "text-color": "#CA3117"
+    },
+    "Comment": {
+      "text-color": "#5C8599",
+      "italic": true
+    },
+    "Documentation": {
+      "text-color": "#4C998E",
+      "italic": true
+    },
+    "Annotation": {
+      "text-color": "#5C8599"
+    },
+    "CommentVar": {
+      "text-color": "#5C8599",
+      "italic": true
+    },
+    "RegionMarker": {
+      "text-color": "#208050"
+    },
+    "Information": {
+      "text-color": "#5C8599",
+      "italic": true
+    },
+    "Warning": {
+      "text-color": "#CA3117",
+      "italic": true
+    },
+    "Alert": {
+      "text-color": "#CA3117",
+      "bold": true
+    },
+    "Error": {
+      "text-color": "#CA3117",
+      "bold": true
+    },
+    "Other": {
+      "text-color": "#208050"
+    }
+  }
+}

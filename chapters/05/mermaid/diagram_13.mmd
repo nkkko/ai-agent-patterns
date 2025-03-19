@@ -1,0 +1,44 @@
+classDiagram
+    class MultiAgentSystem {
+        -coordination_strategy
+        -communication_protocol
+        -agents[]
+        +process_task(task)
+        -coordinate_agents(decomposed_tasks)
+        -integrate_results(agent_outputs)
+    }
+
+    class OrchestratorStrategy {
+        +decompose_task(task)
+        +assign_subtasks(agents, tasks)
+        +aggregate_results(outputs)
+    }
+
+    class PeerNetworkStrategy {
+        +facilitate_communication(agents)
+        +build_consensus(perspectives)
+    }
+
+    class CommunicationProtocol {
+        +format_message(sender, recipient, content)
+        +deliver_message(message)
+        +handle_errors(error_type)
+    }
+
+    class SpecializedAgent {
+        -expertise_domain
+        +process_subtask(task)
+    }
+
+    MultiAgentSystem --> OrchestratorStrategy : may use
+    MultiAgentSystem --> PeerNetworkStrategy : may use
+    MultiAgentSystem --> CommunicationProtocol : uses
+    MultiAgentSystem o-- SpecializedAgent : contains
+
+    note for MultiAgentSystem "Integrates multiple patterns to\ncreate a complete multi-agent system"
+
+    classDef system fill:#4B0082,color:white
+    classDef component fill:#9370DB,color:white
+
+    class MultiAgentSystem system
+    class OrchestratorStrategy,PeerNetworkStrategy,CommunicationProtocol,SpecializedAgent component

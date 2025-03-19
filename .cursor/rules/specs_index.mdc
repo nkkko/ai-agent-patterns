@@ -1,6 +1,6 @@
 ---
 description: Creates and updates the SPECS.md index file that links to all specification documents
-globs: "SPECS.md"
+globs: ["SPECS.md"]
 alwaysApply: false
 ---
 {
@@ -22,12 +22,12 @@ function getSpecFiles() {
       const content = fs.readFileSync(path.join('specs', file), 'utf8');
       const titleMatch = content.match(/^#\\s+(.+)$/m);
       const title = titleMatch ? titleMatch[1] : file.replace('_spec.md', '').replace(/_/g, ' ');
-      
+
       // Try to extract a description
-      const descMatch = content.match(/^##\\s+Summary\\s*\\n\\s*(.+?)\\s*$/m) || 
+      const descMatch = content.match(/^##\\s+Summary\\s*\\n\\s*(.+?)\\s*$/m) ||
                         content.match(/^\\*(.+?)\\*\\s*$/m);
       const description = descMatch ? descMatch[1] : 'No description available';
-      
+
       return {
         filename: file,
         title: title,
@@ -42,28 +42,28 @@ function getSpecFiles() {
 // Generate the SPECS.md content
 function generateSpecsIndex() {
   const specs = getSpecFiles();
-  
+
   let content = `# Book Chapter Specifications\n\n`;
-  content += `This document provides an overview of all chapter specifications for the AI Agent Design Patterns book.\n\n`;
-  
+  content += `This document provides an overview of all chapter specifications for the Agentic AI Design Patterns book.\n\n`;
+
   if (specs.length === 0) {
     content += `*No specification documents found. Create specifications in the specs/ folder.*\n`;
   } else {
     content += `## Specifications Overview\n\n`;
     content += `| Chapter/Topic | Description | Specification |\n`;
     content += `|---------------|-------------|---------------|\n`;
-    
+
     specs.forEach(spec => {
       const title = spec.title.charAt(0).toUpperCase() + spec.title.slice(1);
-      content += `| ${title} | ${spec.description} | [View Spec](specs/${spec.filename}) |\n`;
+      content += `| ${title} | ${spec.description} | [View Spec](mdc:specs/${spec.filename}) |\n`;
     });
-    
+
     content += `\n## How to Use These Specifications\n\n`;
     content += `Each specification document contains detailed requirements, implementation notes, and references for a specific chapter or topic. `;
     content += `Use these documents when writing or reviewing chapters to ensure consistency and completeness.\n\n`;
     content += `To add a new specification, create a markdown file in the specs/ folder with the naming pattern *topic_spec.md*.\n`;
   }
-  
+
   return content;
 }
 

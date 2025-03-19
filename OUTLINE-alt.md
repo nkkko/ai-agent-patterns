@@ -1,4 +1,4 @@
-## AI Agent Design Patterns: Designing Intelligent Systems for Autonomous Action
+## Agentic AI Design Patterns: Designing Intelligent Systems for Autonomous Action
 
 **A Practical Guide for Software Engineers**
 
@@ -29,7 +29,7 @@ Building reliable and trustworthy agent systems requires adherence to key design
 *   **Context is King:** Provide the agent with relevant context from various sources (web, databases, user preferences, etc.) to enable informed decision-making. Implement strategies for effective context management.
 *   **Budget Awareness:** Consider the cost implications of agent actions (tokens, time, resources) and implement mechanisms to define and enforce budgets as agent complexity increases.
 
-**Chapter 3: Practical AI Agent Design Patterns**
+**Chapter 3: Practical Agentic AI Design Patterns**
 
 This chapter forms the core of the guide, presenting actionable design patterns that software engineers can implement today:
 

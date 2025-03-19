@@ -1,7 +1,7 @@
 # Introduction - Specification
 
 ## Overview
-This specification outlines the content, structure, and key concepts for the Introduction of "AI Agent Design Patterns".
+This specification outlines the content, structure, and key concepts for the Introduction of "Agentic AI Design Patterns".
 
 ## Metadata
 - **Chapter:** Introduction
@@ -16,7 +16,7 @@ This specification outlines the content, structure, and key concepts for the Int
 - Preview the foundation that will be expanded in future editions
 
 ## Key Concepts
-- AI Agent Design Patterns as a practical guide for software engineers
+- Agentic AI Design Patterns as a practical guide for software engineers
 - Focus on immediate implementation rather than theoretical discussions
 - The book as a foundation for future expansion
 

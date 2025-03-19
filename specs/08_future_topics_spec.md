@@ -1,7 +1,7 @@
 # Future Topics for Expanded Edition - Specification
 
 ## Overview
-This specification outlines the content, structure, and key concepts for the Future Topics section of "AI Agent Design Patterns", providing a brief overview of advanced topics to be covered in a full edition.
+This specification outlines the content, structure, and key concepts for the Future Topics section of "Agentic AI Design Patterns", providing a brief overview of advanced topics to be covered in a full edition.
 
 ## Metadata
 - **Chapter:** Future Topics

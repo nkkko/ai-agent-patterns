@@ -1,0 +1,36 @@
+classDiagram
+    class MedicalAgent {
+        +evaluate_symptoms(symptoms)
+        +provide_diagnosis()
+        +suggest_treatment()
+    }
+
+    class Cardiologist {
+        -cardiac_knowledge_base
+        +assess_heart_condition(symptoms)
+    }
+
+    class Neurologist {
+        -neural_knowledge_base
+        +assess_neurological_condition(symptoms)
+    }
+
+    class Radiologist {
+        -imaging_expertise
+        +interpret_scan(imaging_data)
+    }
+
+    MedicalAgent <|-- Cardiologist : specializes as
+    MedicalAgent <|-- Neurologist : specializes as
+    MedicalAgent <|-- Radiologist : specializes as
+
+    note for MedicalAgent "Common medical agent interface"
+    note for Cardiologist "Specializes in heart conditions"
+    note for Neurologist "Specializes in neurological conditions"
+    note for Radiologist "Specializes in medical imaging"
+
+    classDef baseClass fill:#9370DB,color:white
+    classDef specializationClass fill:#4B0082,color:white
+
+    class MedicalAgent baseClass
+    class Cardiologist,Neurologist,Radiologist specializationClass

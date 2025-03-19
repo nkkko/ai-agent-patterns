@@ -1,0 +1,141 @@
+\contentsline {section}{\numberline {0.1}Introduction}{3}{section.0.1}%
+\contentsline {subsection}{\numberline {0.1.1}The Purpose of This Book}{3}{subsection.0.1.1}%
+\contentsline {subsection}{\numberline {0.1.2}Focus on Practical Implementation}{3}{subsection.0.1.2}%
+\contentsline {subsection}{\numberline {0.1.3}A Concise Approach}{3}{subsection.0.1.3}%
+\contentsline {subsection}{\numberline {0.1.4}A Foundation for Expansion}{3}{subsection.0.1.4}%
+\contentsline {subsection}{\numberline {0.1.5}How to Use This Book}{3}{subsection.0.1.5}%
+\contentsline {section}{\numberline {0.2}Chapter 1: Building Blocks of Software Agents}{3}{section.0.2}%
+\contentsline {subsection}{\numberline {0.2.1}Introduction}{3}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {0.2.2}The Agent Loop}{4}{subsection.0.2.2}%
+\contentsline {subsubsection}{\nonumberline Observation}{4}{subsubsection*.3}%
+\contentsline {subsubsection}{\nonumberline Reasoning}{4}{subsubsection*.5}%
+\contentsline {subsubsection}{\nonumberline Action}{4}{subsubsection*.7}%
+\contentsline {subsection}{\numberline {0.2.3}Core Agent Components}{4}{subsection.0.2.3}%
+\contentsline {subsection}{\numberline {0.2.4}References}{5}{subsection.0.2.4}%
+\contentsline {section}{\numberline {0.3}Chapter 2: Core Architectural Patterns}{5}{section.0.3}%
+\contentsline {subsection}{\numberline {0.3.1}Introduction}{5}{subsection.0.3.1}%
+\contentsline {subsection}{\numberline {0.3.2}Key Concepts}{5}{subsection.0.3.2}%
+\contentsline {subsubsection}{\nonumberline Architectural Considerations}{5}{subsubsection*.9}%
+\contentsline {paragraph}{\nonumberline Pattern: Monolithic Agent Pattern}{5}{paragraph*.11}%
+\contentsline {subsubsection}{\nonumberline Protocol-Based Architecture}{5}{subsubsection*.13}%
+\contentsline {paragraph}{\nonumberline Pattern: Protocol-Based Agent Pattern}{5}{paragraph*.15}%
+\contentsline {subsection}{\numberline {0.3.3}The Agent Loop Pattern}{6}{subsection.0.3.3}%
+\contentsline {subsubsection}{\nonumberline Pattern Structure}{6}{subsubsection*.17}%
+\contentsline {subsubsection}{\nonumberline Key Variations}{6}{subsubsection*.19}%
+\contentsline {paragraph}{\nonumberline 1. Reactive Agent Loop}{6}{paragraph*.21}%
+\contentsline {paragraph}{\nonumberline 2. Deliberative Agent Loop}{6}{paragraph*.23}%
+\contentsline {subsubsection}{\nonumberline Best Practices}{7}{subsubsection*.25}%
+\contentsline {subsection}{\numberline {0.3.4}Practical Applications}{7}{subsection.0.3.4}%
+\contentsline {subsection}{\numberline {0.3.5}Summary}{7}{subsection.0.3.5}%
+\contentsline {subsection}{\numberline {0.3.6}References}{7}{subsection.0.3.6}%
+\contentsline {section}{\numberline {0.4}Chapter 3: Tool Integration Patterns}{7}{section.0.4}%
+\contentsline {subsection}{\numberline {0.4.1}Introduction}{7}{subsection.0.4.1}%
+\contentsline {subsection}{\numberline {0.4.2}Function Calling Pattern}{7}{subsection.0.4.2}%
+\contentsline {subsubsection}{\nonumberline Pattern Structure}{8}{subsubsection*.27}%
+\contentsline {subsubsection}{\nonumberline Best Practices}{10}{subsubsection*.29}%
+\contentsline {subsection}{\numberline {0.4.3}Protocol-Based Tool Integration Pattern}{10}{subsection.0.4.3}%
+\contentsline {subsubsection}{\nonumberline Pattern Structure}{10}{subsubsection*.31}%
+\contentsline {subsubsection}{\nonumberline Best Practices}{11}{subsubsection*.33}%
+\contentsline {subsection}{\numberline {0.4.4}Retrieval Augmentation Pattern (RAG)}{12}{subsection.0.4.4}%
+\contentsline {subsubsection}{\nonumberline Pattern Structure}{12}{subsubsection*.35}%
+\contentsline {subsubsection}{\nonumberline Best Practices}{14}{subsubsection*.37}%
+\contentsline {subsection}{\numberline {0.4.5}Tool Composition Pattern}{14}{subsection.0.4.5}%
+\contentsline {subsubsection}{\nonumberline Pattern Structure}{14}{subsubsection*.39}%
+\contentsline {subsubsection}{\nonumberline Best Practices}{15}{subsubsection*.41}%
+\contentsline {subsection}{\numberline {0.4.6}Security Considerations}{15}{subsection.0.4.6}%
+\contentsline {subsection}{\numberline {0.4.7}Performance Considerations}{15}{subsection.0.4.7}%
+\contentsline {subsection}{\numberline {0.4.8}References}{15}{subsection.0.4.8}%
+\contentsline {section}{\numberline {0.5}Memory and State Patterns}{16}{section.0.5}%
+\contentsline {subsection}{\numberline {0.5.1}Introduction}{16}{subsection.0.5.1}%
+\contentsline {subsection}{\numberline {0.5.2}Memory Systems Hierarchy}{16}{subsection.0.5.2}%
+\contentsline {subsection}{\numberline {0.5.3}Conversation Memory Pattern}{16}{subsection.0.5.3}%
+\contentsline {subsubsection}{\nonumberline Pattern Structure}{18}{subsubsection*.43}%
+\contentsline {subsubsection}{\nonumberline Context Window Management}{18}{subsubsection*.45}%
+\contentsline {subsubsection}{\nonumberline Summarization Approaches}{19}{subsubsection*.47}%
+\contentsline {subsubsection}{\nonumberline Example: Customer Support Agent}{19}{subsubsection*.49}%
+\contentsline {subsection}{\numberline {0.5.4}Working Memory Pattern}{19}{subsection.0.5.4}%
+\contentsline {subsubsection}{\nonumberline Purpose and Structure}{19}{subsubsection*.51}%
+\contentsline {subsubsection}{\nonumberline Implementation}{19}{subsubsection*.53}%
+\contentsline {subsubsection}{\nonumberline Task-Focused State Management}{20}{subsubsection*.55}%
+\contentsline {subsubsection}{\nonumberline Attention Mechanisms}{20}{subsubsection*.57}%
+\contentsline {subsubsection}{\nonumberline Example: Research Assistant Agent}{20}{subsubsection*.59}%
+\contentsline {subsection}{\numberline {0.5.5}Long-Term Memory Pattern}{20}{subsection.0.5.5}%
+\contentsline {subsubsection}{\nonumberline Purpose and Structure}{20}{subsubsection*.61}%
+\contentsline {subsubsection}{\nonumberline Implementation}{20}{subsubsection*.63}%
+\contentsline {subsubsection}{\nonumberline Vector Storage Approaches}{21}{subsubsection*.65}%
+\contentsline {subsubsection}{\nonumberline Retrieval Mechanisms}{21}{subsubsection*.67}%
+\contentsline {subsubsection}{\nonumberline Example: Personal Productivity Assistant}{21}{subsubsection*.69}%
+\contentsline {subsection}{\numberline {0.5.6}Memory Optimization Pattern}{21}{subsection.0.5.6}%
+\contentsline {subsubsection}{\nonumberline Purpose and Structure}{21}{subsubsection*.71}%
+\contentsline {subsubsection}{\nonumberline Implementation Strategies}{21}{subsubsection*.73}%
+\contentsline {paragraph}{\nonumberline 1. Compression Techniques}{21}{paragraph*.75}%
+\contentsline {paragraph}{\nonumberline 2. Selective Retention}{22}{paragraph*.77}%
+\contentsline {paragraph}{\nonumberline 3. Chunking and Summarization}{22}{paragraph*.79}%
+\contentsline {subsubsection}{\nonumberline Advanced Optimization Techniques}{22}{subsubsection*.81}%
+\contentsline {subsubsection}{\nonumberline Example: Context Management for Large Problems}{22}{subsubsection*.83}%
+\contentsline {subsection}{\numberline {0.5.7}Integration with Agent Architecture}{22}{subsection.0.5.7}%
+\contentsline {subsection}{\numberline {0.5.8}Conclusion}{22}{subsection.0.5.8}%
+\contentsline {subsection}{\numberline {0.5.9}Further Reading}{23}{subsection.0.5.9}%
+\contentsline {section}{\numberline {0.6}Multi-Agent Patterns}{23}{section.0.6}%
+\contentsline {subsection}{\numberline {0.6.1}Introduction}{23}{subsection.0.6.1}%
+\contentsline {subsection}{\numberline {0.6.2}Multi-Agent Architecture Fundamentals}{23}{subsection.0.6.2}%
+\contentsline {subsection}{\numberline {0.6.3}Orchestrator Pattern}{24}{subsection.0.6.3}%
+\contentsline {subsubsection}{\nonumberline Pattern Structure}{24}{subsubsection*.85}%
+\contentsline {subsubsection}{\nonumberline Task Decomposition Strategies}{26}{subsubsection*.87}%
+\contentsline {subsubsection}{\nonumberline Result Aggregation Approaches}{26}{subsubsection*.89}%
+\contentsline {subsubsection}{\nonumberline Example: Content Creation System}{26}{subsubsection*.91}%
+\contentsline {subsection}{\numberline {0.6.4}Peer Network Pattern}{26}{subsection.0.6.4}%
+\contentsline {subsubsection}{\nonumberline Purpose and Structure}{26}{subsubsection*.93}%
+\contentsline {subsubsection}{\nonumberline Implementation}{27}{subsubsection*.95}%
+\contentsline {subsubsection}{\nonumberline Consensus Building Mechanisms}{27}{subsubsection*.97}%
+\contentsline {subsubsection}{\nonumberline Example: Debate System}{27}{subsubsection*.99}%
+\contentsline {subsection}{\numberline {0.6.5}Specialization Pattern}{27}{subsection.0.6.5}%
+\contentsline {subsubsection}{\nonumberline Purpose and Structure}{27}{subsubsection*.101}%
+\contentsline {subsubsection}{\nonumberline Implementation}{27}{subsubsection*.103}%
+\contentsline {subsubsection}{\nonumberline Expertise Boundary Management}{28}{subsubsection*.105}%
+\contentsline {subsubsection}{\nonumberline Example: Medical Diagnosis System}{28}{subsubsection*.107}%
+\contentsline {subsection}{\numberline {0.6.6}Communication Protocol Pattern}{28}{subsection.0.6.6}%
+\contentsline {subsubsection}{\nonumberline Purpose and Structure}{28}{subsubsection*.109}%
+\contentsline {subsubsection}{\nonumberline Implementation}{28}{subsubsection*.111}%
+\contentsline {subsubsection}{\nonumberline Message Exchange Patterns}{28}{subsubsection*.113}%
+\contentsline {subsubsection}{\nonumberline Error Handling and Recovery}{29}{subsubsection*.115}%
+\contentsline {subsubsection}{\nonumberline Example: Document Processing Pipeline}{29}{subsubsection*.117}%
+\contentsline {subsection}{\numberline {0.6.7}Integration with Agent Architecture}{29}{subsection.0.6.7}%
+\contentsline {subsection}{\numberline {0.6.8}Conclusion}{29}{subsection.0.6.8}%
+\contentsline {subsection}{\numberline {0.6.9}Further Reading}{29}{subsection.0.6.9}%
+\contentsline {section}{\numberline {0.7}Case Study: Building a Retrieval-Enhanced Development Assistant}{30}{section.0.7}%
+\contentsline {subsection}{\numberline {0.7.1}Introduction}{30}{subsection.0.7.1}%
+\contentsline {subsection}{\numberline {0.7.2}Assistant Requirements}{30}{subsection.0.7.2}%
+\contentsline {subsubsection}{\nonumberline Capabilities and Constraints}{30}{subsubsection*.119}%
+\contentsline {subsubsection}{\nonumberline User Interaction Patterns}{30}{subsubsection*.121}%
+\contentsline {subsubsection}{\nonumberline Performance Considerations}{31}{subsubsection*.123}%
+\contentsline {subsection}{\numberline {0.7.3}Architecture Overview}{31}{subsection.0.7.3}%
+\contentsline {subsubsection}{\nonumberline Pattern Selection and Rationale}{31}{subsubsection*.125}%
+\contentsline {subsubsection}{\nonumberline Component Interaction Diagram}{32}{subsubsection*.127}%
+\contentsline {subsubsection}{\nonumberline Implementation Considerations}{32}{subsubsection*.129}%
+\contentsline {subsection}{\numberline {0.7.4}Key Implementation Details}{32}{subsection.0.7.4}%
+\contentsline {subsubsection}{\nonumberline Protocol Selection for Tool Integration}{32}{subsubsection*.131}%
+\contentsline {subsubsection}{\nonumberline Memory System Design}{32}{subsubsection*.133}%
+\contentsline {subsubsection}{\nonumberline Error Handling Approach}{33}{subsubsection*.135}%
+\contentsline {subsection}{\numberline {0.7.5}Lessons Learned}{33}{subsection.0.7.5}%
+\contentsline {subsubsection}{\nonumberline Pattern Adaptations for Specific Needs}{33}{subsubsection*.137}%
+\contentsline {subsubsection}{\nonumberline Performance Optimizations}{34}{subsubsection*.139}%
+\contentsline {subsubsection}{\nonumberline Future Extension Opportunities}{34}{subsubsection*.141}%
+\contentsline {subsection}{\numberline {0.7.6}Conclusion}{34}{subsection.0.7.6}%
+\contentsline {subsection}{\numberline {0.7.7}References}{35}{subsection.0.7.7}%
+\contentsline {section}{\numberline {0.8}Appendix A: Pattern Quick Reference}{35}{section.0.8}%
+\contentsline {subsection}{\numberline {0.8.1}Agent Foundation Patterns}{35}{subsection.0.8.1}%
+\contentsline {subsection}{\numberline {0.8.2}Architectural Patterns}{36}{subsection.0.8.2}%
+\contentsline {subsection}{\numberline {0.8.3}Tool Integration Patterns}{38}{subsection.0.8.3}%
+\contentsline {subsection}{\numberline {0.8.4}Memory Patterns}{40}{subsection.0.8.4}%
+\contentsline {subsection}{\numberline {0.8.5}Multi-Agent Patterns}{42}{subsection.0.8.5}%
+\contentsline {subsection}{\numberline {0.8.6}Pattern Selection Guide}{44}{subsection.0.8.6}%
+\contentsline {subsection}{\numberline {0.8.7}Using This Reference}{45}{subsection.0.8.7}%
+\contentsline {section}{\numberline {0.9}Appendix B: Future Topics for Expanded Edition}{45}{section.0.9}%
+\contentsline {subsection}{\numberline {0.9.1}Agent Security Patterns}{45}{subsection.0.9.1}%
+\contentsline {subsection}{\numberline {0.9.2}Evaluation and Monitoring Patterns}{45}{subsection.0.9.2}%
+\contentsline {subsection}{\numberline {0.9.3}Learning and Adaptation Patterns}{46}{subsection.0.9.3}%
+\contentsline {subsection}{\numberline {0.9.4}Multi-modal Agent Patterns}{46}{subsection.0.9.4}%
+\contentsline {subsection}{\numberline {0.9.5}Deployment and Scaling Patterns}{46}{subsection.0.9.5}%
+\contentsline {subsection}{\numberline {0.9.6}Continuing Your Agent Design Journey}{46}{subsection.0.9.6}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

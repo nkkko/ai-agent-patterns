@@ -1,0 +1,26 @@
+classDiagram
+    class PeerAgent {
+        -agents_registry
+        -messaging_system
+        -belief_state
+        +receive_message(sender, message)
+        +send_message(recipient, message)
+        +update_beliefs(new_information)
+        +share_perspective()
+    }
+
+    class MessagingSystem {
+        +deliver_message(sender, recipient, message)
+        +broadcast(sender, message)
+    }
+
+    PeerAgent --> MessagingSystem : uses
+    PeerAgent --> PeerAgent : communicates with
+
+    note for PeerAgent "Interacts directly with other\nagents to share perspectives\nand build consensus"
+
+    classDef peerAgentClass fill:#4B0082,color:white
+    classDef messagingClass fill:#9370DB,color:white
+
+    class PeerAgent peerAgentClass
+    class MessagingSystem messagingClass

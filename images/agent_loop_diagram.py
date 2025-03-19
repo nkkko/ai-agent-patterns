@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate Agent Loop Diagram for AI Agent Design Patterns book.
+Generate Agent Loop Diagram for Agentic AI Design Patterns book.
 
 This image illustrates the fundamental agent loop concept for Chapter 1: Building Blocks of Software Agents.
 """

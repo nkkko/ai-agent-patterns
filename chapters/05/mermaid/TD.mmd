@@ -1,0 +1,26 @@
+graph TD
+    Send[Send Message] --> Delivered{Delivered?}
+
+    Delivered -->|Yes| Ack{Acknowledged?}
+    Delivered -->|No| Retry[Retry Strategy]
+
+    Ack -->|Yes| Success[Communication Successful]
+    Ack -->|No| Timeout[Timeout Handler]
+
+    Retry --> RetryLimit{Retry Limit?}
+    Timeout --> RetryLimit
+
+    RetryLimit -->|Not Reached| BackOff[Exponential Backoff]
+    RetryLimit -->|Limit Reached| Fallback[Fallback Mechanism]
+
+    BackOff --> Send
+
+    subgraph "Error Handling Process"
+        Delivered
+        Ack
+        Retry
+        Timeout
+        RetryLimit
+        BackOff
+        Fallback
+    end

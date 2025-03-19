@@ -1,7 +1,7 @@
 # Chapter 5: Multi-Agent Patterns - Specification
 
 ## Overview
-This specification outlines the content, structure, and key concepts for Chapter 5 of "AI Agent Design Patterns", focusing on patterns for designing and implementing multi-agent systems.
+This specification outlines the content, structure, and key concepts for Chapter 5 of "Agentic AI Design Patterns", focusing on patterns for designing and implementing multi-agent systems.
 
 ## Metadata
 - **Chapter Number:** 5

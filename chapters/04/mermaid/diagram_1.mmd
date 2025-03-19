@@ -1,0 +1,30 @@
+sequenceDiagram
+    participant User
+    participant Agent
+    participant CM as Conversation Memory
+    participant LLM
+
+    User->>Agent: Initial request
+    Agent->>CM: Store user message
+    Agent->>CM: Retrieve context
+    CM->>Agent: Provide message history
+    Agent->>LLM: Generate response with context
+    LLM->>Agent: Response
+    Agent->>CM: Store agent response
+    Agent->>User: Deliver response
+
+    User->>Agent: Follow-up question
+    Agent->>CM: Store user message
+
+    Note over CM: Check token count
+    alt Over token limit
+        CM->>CM: Generate summary of older messages
+        CM->>CM: Replace older messages with summary
+    end
+
+    Agent->>CM: Retrieve context
+    CM->>Agent: Provide summarized history + recent messages
+    Agent->>LLM: Generate response with context
+    LLM->>Agent: Response with conversation awareness
+    Agent->>CM: Store agent response
+    Agent->>User: Deliver contextual response

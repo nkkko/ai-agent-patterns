@@ -1,0 +1,37 @@
+classDiagram
+    class DebateAgent {
+        -perspective
+        -belief_state
+        -reasoning_process
+        +propose_argument(topic)
+        +evaluate_argument(argument)
+        +counter_argument(argument)
+        +update_beliefs(new_evidence)
+    }
+
+    class PerspectiveA {
+        -domain_knowledge_A
+    }
+
+    class PerspectiveB {
+        -domain_knowledge_B
+    }
+
+    class PerspectiveC {
+        -domain_knowledge_C
+    }
+
+    DebateAgent <|-- PerspectiveA : extends
+    DebateAgent <|-- PerspectiveB : extends
+    DebateAgent <|-- PerspectiveC : extends
+
+    note for DebateAgent "Base agent with debate capabilities"
+    note for PerspectiveA "Represents specific viewpoint A"
+    note for PerspectiveB "Represents specific viewpoint B"
+    note for PerspectiveC "Represents specific viewpoint C"
+
+    classDef baseClass fill:#9370DB,color:white
+    classDef perspectiveClass fill:#4B0082,color:white
+
+    class DebateAgent baseClass
+    class PerspectiveA,PerspectiveB,PerspectiveC perspectiveClass

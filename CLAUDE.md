@@ -1,11 +1,13 @@
-# AI Agent Patterns Project Guidelines
+# Agentic AI Design Patterns Project Guidelines
 
 ## Build Commands
-- `make pdf` - Generate PDF book
+- `make pdf` - Generate PDF book with modern template
 - `make epub` - Generate EPUB book
 - `make html` - Generate HTML book
 - `make all` - Generate all formats
 - `make clean` - Remove generated files
+- `make very-simple-pdf` - Generate a simple PDF without styling (backup option)
+- `make debug-pdf` - Generate LaTeX source for debugging
 
 ## Python Setup
 - Python 3.7+ required
@@ -31,3 +33,12 @@
 - Use matplotlib for Python-generated diagrams
 - Save images to images/generated/ directory
 - 300 DPI for publication-quality images
+
+## Book Design
+- Template: Modern tech style with blue primary color (#4361EE) and purple accents (#3A0CA3)
+- Chapter styling: Large headers with horizontal rules underneath
+- Code blocks: Subtle shadows with "code" label in top-right corner
+- Info boxes: Left border accent with simple icons
+- Title page: Clean design with geometric elements
+- Body text: Latin Modern Roman font
+- Headers/titles: Set in primary blue color

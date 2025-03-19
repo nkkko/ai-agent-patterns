@@ -1,0 +1,72 @@
+classDiagram
+    class CoreAgent {
+        -conversation_memory
+        -long_term_memory
+        -tool_controller
+        +process_user_input(message)
+        -plan_response(context)
+        -execute_plan(plan)
+        -generate_response(execution_results)
+    }
+
+    class ToolController {
+        -available_tools
+        +discover_tools()
+        +select_tool(query)
+        +execute_tool(tool, parameters)
+        +process_result(tool_result)
+    }
+
+    class DocumentationRetriever {
+        -documentation_sources
+        +query_documentation(query)
+        +rank_results(results)
+        +format_for_context(ranked_results)
+    }
+
+    class CodebaseRetriever {
+        -github_client
+        -embedding_model
+        +connect_repository(repo_url)
+        +semantic_code_search(query)
+        +extract_relevant_snippets(search_results)
+    }
+
+    class CodeGenerator {
+        -code_generation_model
+        -language_specific_validators
+        +generate_code(spec, context)
+        +validate_code(generated_code)
+        +explain_code(generated_code)
+    }
+
+    class ConversationMemory {
+        -message_history
+        -summary_buffer
+        +add_message(role, content)
+        +get_relevant_history(query)
+        +compress_old_messages()
+    }
+
+    class LongTermMemory {
+        -vector_store
+        -user_preferences
+        +store_information(key, value)
+        +retrieve_information(key)
+        +query_semantic_memory(query)
+    }
+
+    CoreAgent --> ToolController : uses
+    CoreAgent --> ConversationMemory : maintains
+    CoreAgent --> LongTermMemory : uses
+    ToolController --> DocumentationRetriever : controls
+    ToolController --> CodebaseRetriever : controls
+    ToolController --> CodeGenerator : controls
+
+    note for CoreAgent "Coordinates overall agent behavior"
+    note for ToolController "Manages tool selection and execution"
+    note for DocumentationRetriever "Retrieves relevant documentation"
+    note for CodebaseRetriever "Searches codebases for examples"
+    note for CodeGenerator "Generates and validates code"
+    note for ConversationMemory "Maintains session context"
+    note for LongTermMemory "Stores persistent information"

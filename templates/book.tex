@@ -1,13 +1,30 @@
-% AI Agent Design Patterns Book LaTeX Template - O'Reilly Style
-\documentclass[11pt,oneside]{scrbook}
+% Agentic AI Design Patterns Book LaTeX Template - Modern Tech Style
+\documentclass[11pt,oneside]{book}
+
+% Fix chapter and section numbering
+\renewcommand{\thechapter}{\arabic{chapter}}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+
+% Define numsections counter to start at 1 not 0
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Ensure that section numbers start at 1 instead of 0
+\makeatletter
+\@addtoreset{section}{chapter}
+\makeatother
 
 % Packages
 \usepackage{fontspec}
 \usepackage{geometry}
-\usepackage{hyperref}
-\usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{graphicx}
 \usepackage{tikz}
+\usetikzlibrary{positioning,calc}
+% Configure images to fit within page width
+\setkeys{Gin}{width=\linewidth,keepaspectratio}
+\usepackage{hyperref}
 \usepackage{fancyhdr}
 \usepackage{booktabs}
 \usepackage{listings}
@@ -16,103 +33,201 @@
 \usepackage{framed}
 \usepackage{fancyvrb}
 \usepackage{tcolorbox}
+\tcbuselibrary{breakable,skins,listings}
 \usepackage{tabularx}
+\usepackage{array}
+\usepackage{calc}
 \usepackage{float}
 \usepackage{lipsum}
 \usepackage{enumitem}
 
-% O'Reilly-style colors
-\definecolor{covercolor}{HTML}{067BB0}
-\definecolor{codebackground}{RGB}{245,245,245}
+% Fix for longtable column widths
+\newlength{\tablewidth}
+\setlength{\tablewidth}{\linewidth}
+\newcommand{\tablecol}[1]{\dimexpr \tablewidth * #1 \relax}
+
+% Define potentially missing Pandoc commands
+\providecommand{\pandocbounded}[1]{\textbf{#1}}
+
+% Modern tech-inspired color scheme
+\definecolor{primarycolor}{HTML}{4361EE} % Primary blue
+\definecolor{secondarycolor}{HTML}{3A0CA3} % Deep purple for accents
+\definecolor{headingcolor}{HTML}{4361EE} % Headings in primary color
+\definecolor{codebackground}{RGB}{250,250,252} % Slightly blue-tinted code background
+\definecolor{codeframe}{RGB}{230,234,245} % Subtle blue frame
+\definecolor{pythongreen}{RGB}{32,141,97} % Deeper green
+\definecolor{pythonblue}{RGB}{64,128,214}
+\definecolor{pythonpurple}{RGB}{149,64,255} % Brighter purple
+\definecolor{pythondocstring}{RGB}{76,153,148}
+\definecolor{pythoncomment}{RGB}{92,133,153}
+\definecolor{pythonred}{RGB}{222,62,35} % More vibrant red
 \definecolor{npmred}{RGB}{203,56,55}
-\definecolor{accent}{HTML}{58A6FF}
+\definecolor{accent}{HTML}{4CC9F0} % Cyan accent
 
 % Define \tightlist for pandoc compatability
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-% Define Shaded environment and related commands for code blocks
+% Define Shaded environment for modern code blocks
 \definecolor{shadecolor}{RGB}{240,240,240}
 \newenvironment{Shaded}{\begin{tcolorbox}[
   breakable,
   enhanced,
   colback=codebackground,
-  colframe=black!40,
-  arc=2mm,
-  boxrule=0.4pt
+  colframe=codeframe,
+  arc=0.5mm,
+  boxrule=0.5pt,
+  left=12pt,
+  right=12pt,
+  top=8pt,
+  bottom=8pt,
+  fontupper=\ttfamily\small,
+  before upper={\setlength{\baselineskip}{1.4em}},
+  after upper={\vspace{2pt}},
+  drop shadow={opacity=0.1},
+  title={},
+  overlay unbroken and first={
+    \node[anchor=south east, xshift=-5pt, yshift=5pt, text=secondarycolor!70, font=\tiny\ttfamily] at (frame.north east) {code};
+  }
 ]}{\end{tcolorbox}}
 
 % Define Highlighting environment for syntax highlighting
-\newenvironment{Highlighting}{}{}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  fontsize=\small,
+  baselinestretch=1.4,
+  commandchars=\\\{\}
+}
 
-% Syntax highlighting tokens
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{#1}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
-\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+% Python-specific syntax highlighting tokens
+\newcommand{\AlertTok}[1]{\textcolor{pythonred}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor{pythoncomment}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor{pythonblue}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor{pythonpurple}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor{pythonblue}{\textbf{#1}}}
+\newcommand{\CharTok}[1]{\textcolor{pythonpurple}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor{pythoncomment}{\textit{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor{pythongreen}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor{pythonblue}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor{pythondocstring}{\textit{#1}}}
+\newcommand{\ImportTok}[1]{\textcolor{pythongreen}{\textbf{#1}}}
+\newcommand{\KeywordTok}[1]{\textcolor{pythongreen}{\textbf{#1}}}
 \newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor{black}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor{pythonpurple}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor{pythonblue}{#1}}
+\newcommand{\StringTok}[1]{\textcolor{pythonpurple}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor{pythonblue}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor{pythondocstring}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor{pythonpurple}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor{pythonred}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor{pythonpurple}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor{pythoncomment}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor{pythonred}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor{pythonpurple}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor{pythoncomment}{\textbf{\textit{#1}}}}
+\newcommand{\PreprocessorTok}[1]{\textcolor{pythonblue}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor{pythongreen}{\textbf{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor{pythonpurple}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor{pythonred}{\textbf{\textit{#1}}}}
 
-% Highlight boxes
+% Customized code listing style
+\lstdefinestyle{pythonstyle}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codebackground},
+  keywordstyle=\color{pythongreen}\bfseries,
+  commentstyle=\color{pythoncomment}\itshape,
+  stringstyle=\color{pythonpurple},
+  showstringspaces=false,
+  identifierstyle=\color{black},
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  breakatwhitespace=false,
+  frame=single,
+  rulecolor=\color{codeframe},
+  framesep=4pt
+}
+
+% Set the default style for listings
+\lstset{style=pythonstyle}
+
+% Modern styled info boxes
 \newtcolorbox{infobox}[1][]{
   enhanced jigsaw,
-  colback=blue!5!white,
-  colframe=blue!75!black,
+  colback=primarycolor!5,
+  colframe=primarycolor!80,
+  arc=0mm, % Sharp corners
   title=Information,
-  fonttitle=\bfseries,
+  fonttitle=\bfseries\sffamily,
+  coltitle=white,
   breakable,
+  leftrule=5pt, % Left border accent
+  rightrule=0pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  left=10pt,
+  right=5pt,
+  % Icon placeholder
+  overlay unbroken and first={
+    \node[anchor=north west, text=white, font=\bfseries] at ([xshift=2pt, yshift=-2pt]frame.north west) {i};
+  },
   #1
 }
 
 \newtcolorbox{warningbox}[1][]{
   enhanced jigsaw,
-  colback=yellow!5!white,
-  colframe=yellow!75!black,
+  colback=pythonred!5,
+  colframe=pythonred!80,
+  arc=0mm, % Sharp corners
   title=Warning,
-  fonttitle=\bfseries,
+  fonttitle=\bfseries\sffamily,
+  coltitle=white,
   breakable,
+  leftrule=5pt, % Left border accent
+  rightrule=0pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  left=10pt,
+  right=5pt,
+  % Icon placeholder
+  overlay unbroken and first={
+    \node[anchor=north west, text=white, font=\bfseries] at ([xshift=2pt, yshift=-2pt]frame.north west) {!};
+  },
   #1
 }
 
 \newtcolorbox{tipbox}[1][]{
   enhanced jigsaw,
-  colback=green!5!white,
-  colframe=green!75!black,
+  colback=accent!5,
+  colframe=accent!80,
+  arc=0mm, % Sharp corners
   title=Tip,
-  fonttitle=\bfseries,
+  fonttitle=\bfseries\sffamily,
+  coltitle=white,
   breakable,
+  leftrule=5pt, % Left border accent
+  rightrule=0pt,
+  toprule=0pt,
+  bottomrule=0pt,
+  left=10pt,
+  right=5pt,
+  % Icon placeholder
+  overlay unbroken and first={
+    \node[anchor=north west, text=white, font=\bfseries] at ([xshift=2pt, yshift=-2pt]frame.north west) {✓};
+  },
   #1
 }
 
 % Set up fonts
-\setmainfont{$mainfont$}
-\setsansfont{$sansfont$}
-\setmonofont{$monofont$}
+\IfFontExistsTF{Latin Modern Roman}{
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+}{
+  % Fallback to standard LaTeX fonts
+  % Empty block that doesn't try to set custom fonts
+}
 
 % Hyperref settings
 \hypersetup{
@@ -124,7 +239,7 @@
     pdftitle={$title$},
     pdfauthor={$for(author)$$author$$sep$, $endfor$},
     pdfkeywords={AI, Agents, Design Patterns},
-    pdfcreator={XeLaTeX},
+    pdfcreator={LuaLaTeX},
     bookmarks=true,
     bookmarksnumbered=true
 }
@@ -132,50 +247,122 @@
 % Page layout
 \geometry{$geometry$}
 
-% Header and footer style - O'Reilly like
+% Header and footer style - Modern elegant design
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[LE,RO]{} % Clear these positions
+\fancyhead[R]{\small\textsf{\textcolor{secondarycolor}{\rightmark}}} % Right header with section
 \fancyfoot[C]{\thepage} % Center footer for page number
-\fancyfoot[LE,RO]{\small\textsf{$title$}} % Book title in footer
-\renewcommand{\headrulewidth}{0pt} % No header rule
-\renewcommand{\footrulewidth}{0.4pt} % Footer rule
+\renewcommand{\headrulewidth}{0.4pt} % Subtle header rule
+\renewcommand{\footrulewidth}{0pt} % No footer rule
+\renewcommand{\headrule}{\hbox to\headwidth{\color{primarycolor}\leaders\hrule height \headrulewidth\hfill}}
 
-% Chapter and section styling
-\KOMAoption{chapterprefix}{true}
-\addtokomafont{chapter}{\Large\bfseries\color{covercolor}}
-\addtokomafont{section}{\normalfont\large\bfseries\color{covercolor}}
-\addtokomafont{subsection}{\normalfont\normalsize\bfseries\color{covercolor}}
+% Chapter and section styling with modern design
+\usepackage{titlesec}
+
+% Chapter styling with a horizontal rule
+\titleformat{\chapter}[display]
+    {\normalfont\huge\bfseries\color{primarycolor}}
+    {\chaptertitlename\ \thechapter}
+    {20pt}
+    {\Huge}
+    [\vspace{1ex}{\titlerule[1pt]}]
+
+% Section styling with left border
+\titleformat{\section}
+    {\normalfont\large\bfseries\color{primarycolor}}
+    {\thesection}
+    {1em}
+    {}
+    [\vspace{0.5ex}]
+
+% Subsection styling
+\titleformat{\subsection}
+    {\normalfont\normalsize\bfseries\color{secondarycolor}}
+    {\thesubsection}
+    {1em}
+    {}
+
+% Adjust spacing
+\titlespacing*{\chapter}{0pt}{50pt}{40pt}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Force correct counter
+\AtBeginDocument{
+  \setcounter{chapter}{0}
+}
 
 % Custom commands for inline code and other elements
 \newcommand{\code}[1]{\texttt{\textcolor{npmred}{#1}}}
 
+% Define a custom environment for Python code with modern styling
+\newtcolorbox{pythoncode}[1][]{
+  breakable,
+  enhanced,
+  colback=codebackground,
+  colframe=codeframe,
+  arc=0.5mm,
+  boxrule=0.5pt,
+  left=8pt,
+  right=8pt,
+  top=6pt,
+  bottom=6pt,
+  fontupper=\ttfamily\small,
+  title=Python Code,
+  coltitle=white,
+  colbacktitle=primarycolor!80,
+  fonttitle=\sffamily\bfseries\small,
+  titlerule=0mm,
+  attach boxed title to top left={xshift=10pt, yshift=-\tcboxedtitleheight/2},
+  boxed title style={
+    colframe=primarycolor!80,
+    arc=0pt,
+    outer arc=0pt,
+  },
+  drop shadow={opacity=0.1},
+  #1
+}
+
+% Python specific keywords
+\newcommand{\pykw}[1]{\textcolor{pythongreen}{\textbf{#1}}}
+\newcommand{\pyfunc}[1]{\textcolor{pythonblue}{#1}}
+\newcommand{\pystr}[1]{\textcolor{pythonpurple}{#1}}
+\newcommand{\pycomment}[1]{\textcolor{pythoncomment}{\textit{#1}}}
+\newcommand{\pydoc}[1]{\textcolor{pythondocstring}{\textit{#1}}}
+\newcommand{\pyconst}[1]{\textcolor{pythonred}{#1}}
+\newcommand{\pyself}[1]{\textcolor{pythonblue}{#1}}
+
 \begin{document}
 
-% Title page with O'Reilly style
+% Modern elegant title page with geometric elements
 \begin{titlepage}
-    \tikzset{external/export=false}
     \begin{tikzpicture}[remember picture, overlay]
-        % Top bar
-        \fill[covercolor] (current page.north west) rectangle ([yshift=-2cm]current page.north east);
-        \node[anchor=north west, text=white, font=\Large\itshape] at ([xshift=1cm, yshift=-1cm]current page.north west) {A Guide to Building Effective AI Systems};
+        % Background gradient effect
+        \shade[top color=primarycolor!10, bottom color=white] (current page.north west) rectangle (current page.south east);
 
-        % Cover image placeholder - replace with your own image
-        \node[anchor=north] at ([yshift=-5cm]current page.north) {
-            \includegraphics[width=5cm]{images/generated/book_cover.png}
-        };
+        % Abstract decorative shapes
+        \fill[primarycolor!20] (current page.north west) -- ++(5,0) -- ++(0,-5) -- ++(-5,0) -- cycle;
+        \fill[secondarycolor!15] (current page.south east) -- ++(-5,0) -- ++(0,5) -- ++(5,0) -- cycle;
+        \fill[accent!20] ([xshift=4cm, yshift=-4cm]current page.north east) circle (2cm);
 
-        % Title block
-        \fill[covercolor] ([yshift=-8cm]current page.north west) rectangle ([yshift=-12cm]current page.north east);
-        \node[anchor=north, text=white, font=\Huge\bfseries, align=center] at ([yshift=-10cm]current page.north) {$title$};
+        % Subtitle bar
+        \fill[primarycolor!90] ([yshift=-6cm]current page.north west) rectangle ([yshift=-7cm]current page.north east);
+        \node[anchor=west, text=white, font=\Large\itshape] at ([xshift=2cm, yshift=-6.5cm]current page.north west) {A Guide to Building Effective Agentic AI Systems};
 
-        % Authors
-        \node[anchor=north, font=\Large\bfseries, align=center] at ([yshift=-14cm]current page.north) {
+        % Main title with decorative element
+        \draw[line width=1pt, primarycolor] ([yshift=-10cm, xshift=2cm]current page.north west) -- ([yshift=-10cm, xshift=-2cm]current page.north east);
+        \node[anchor=north, text=primarycolor, font=\fontsize{32}{36}\selectfont\bfseries, align=center] at ([yshift=-9cm]current page.north) {Agentic AI Design Patterns};
+        \draw[line width=1pt, primarycolor] ([yshift=-11cm, xshift=2cm]current page.north west) -- ([yshift=-11cm, xshift=-2cm]current page.north east);
+
+        % Authors with subtle background
+        \fill[secondarycolor!10, rounded corners=5pt] ([yshift=-14.5cm, xshift=-4cm]current page.north) rectangle ([yshift=-13cm, xshift=4cm]current page.north);
+        \node[anchor=north, font=\Large\bfseries, text=secondarycolor, align=center] at ([yshift=-13.5cm]current page.north) {
             $for(author)$$author$$sep$ \\ $endfor$
         };
 
-        % Rights
-        \node[anchor=south, font=\small, align=center] at ([yshift=2cm]current page.south) {
+        % Rights with decorative element
+        \fill[accent!10, rounded corners=5pt] ([yshift=3cm, xshift=-3cm]current page.south) rectangle ([yshift=1.5cm, xshift=3cm]current page.south);
+        \node[anchor=south, font=\small, text=secondarycolor!80, align=center] at ([yshift=2.25cm]current page.south) {
             $rights$
         };
     \end{tikzpicture}
